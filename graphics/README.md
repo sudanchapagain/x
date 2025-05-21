@@ -1,5 +1,23 @@
-# XYZ to HEX Converter
+building
+--------
 
-This implementation includes an optional chromatic adaptation transformation
-from D50 to D65 using the Bradford method, which is a von Kries-based
-chromatic adaptation model.
+required dependencies:
+
+```sh
+glfw-devel glew-devel mesa-libGL-devel freeglut-devel
+```
+
+to run pass project id like below:
+
+```sh
+cmake .. -DPROJECT_ID=01
+
+cmake --build .
+```
+
+resource
+--------
+
+- <https://learopengl.com>
+
+- <https://learnopengl.com/Guest-Articles/2021/Scene/Frustum-Culling>
