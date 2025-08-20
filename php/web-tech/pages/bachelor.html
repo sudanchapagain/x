@@ -6,12 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="../assets/img/logo2.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/stylesheet/base.css" />
-    <link rel="stylesheet" href="../assets/stylesheet/form.css">
-    <style>
-        h1 {
-            font-size: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/stylesheet/course.css">
     <title>Ratna Rajyalaxmi Campus</title>
 </head>
 
@@ -19,24 +14,24 @@
     <div class="page">
         <nav>
             <div class="logoContainer">
-                <a href="../index.php"><img class="logo" src="../assets/img/logo2.png" alt="logo" /></a>
+                <a href="../index.html"><img class="logo" src="../assets/img/logo2.png" alt="logo" /></a>
                 <span>RR Campus</span>
             </div>
 
             <div class="navlinks">
                 <ul>
-                    <li><a href="./about.php">About us</a></li>
+                    <li><a href="./about.html">About us</a></li>
                     <li>
                         <div class="dropdown">
                             <a>Programs ↓</a>
                             <div class="dropdown-content">
-                                <a href="./bachelor.php">Bachelor</a>
-                                <a href="./masters.php">Masters</a>
+                                <b><a>Bachelor</a></b>
+                                <a href="./masters.html">Masters</a>
                             </div>
                         </div>
                     </li>
-                    <li><b>Admission</b></li>
-                    <li><a href="./calender.php">Calender</a></li>
+                    <li><a href="./admission.html">Admission</a></li>
+                    <li><a href="./calender.html">Calender</a></li>
                 </ul>
             </div>
 
@@ -51,34 +46,20 @@
 
         <hr>
 
-        <h1>Apply for admission</h1>
-        <br><br>
+        <h1>Bachelor Programs</h1>
+        <br>
+        <p>RR Campus has undergraduate courses on the following topics: </p>
 
-        <form method="POST" action="../scripts/create_process.php">
-            <div class="grid">
-                <div>
-                    <p class="formTitle">Full Name</p>
-                    <input type="text" name="name" placeholder="Your Name" size="40" class="simple" required>
-                    <br><br>
-
-                    <p class="formTitle">Email</p>
-                    <input type="email" size="40" placeholder="yourname@site.com" name="email" class="simple" required><br><br>
-                </div>
+        <div class="container">
+            <div class="courseBox">Sociology</div>
+            <div class="courseBox">Geology</div>
+            <div class="courseBox">Rural Development</div>
+            <div class="courseBox">Music</div>
+            <div class="courseBox">Computer Application</div>
+            <div class="courseBox">Anthropology</div>
+        </div>
 
 
-                <div>
-                    <p class="formTitle">Contact Number </p>
-                    <input type="tel" size="40" placeholder="+977 98*******" name="number" class="simple" required>
-                    <br><br>
-
-                    <p class="formTitle">Password:</p>
-                    <input type="password" size="40" placeholder="********" name="password" class="simple" required>
-                </div>
-            </div>
-            <br>
-            <br>
-            <input class="submit" type="submit" value="Submit Form">
-        </form>
 
     </div>
 
