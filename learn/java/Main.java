@@ -4,8 +4,31 @@ import src.inheritance.abstractClass.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Basics
-        String str[] = {"10", "20"};
+
+
+        // HISTORY
+
+
+
+        /*
+        { JDK - Java Development Tools (JRE + Development Toools)
+            { JRE - Java Runtime Environemnt (jvm + library class)
+                { JVM - Java Virtual Machine   {JIT - just in time }
+            }
+         }
+
+         - JDK: compiler (javac), archiver (jar), docs gen (javadoc), debuggers, monitoring tools
+
+         - JRE: UI toolkits (Swing, AWT, JavaFX), deployment tech (Java Web Start, applets),
+              integration libs (JDBC, RMI, CORBA), base libraries (java.*, javax.*)
+
+         - JVM: class loader subsystem, bytecode verifier, bytecode interpreter, jit compiler
+         */
+
+        String str[] = {
+                "10",
+                "20"
+        };
         Basics basic = new Basics();
         basic.basics(str);
         System.out.println("---------------------------------");

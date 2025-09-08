@@ -15,6 +15,36 @@ public class Basics {
         // boolean 1byte
         // all these are primitives and allocated on the stack.
         // inlined into objects if fields
+        boolean bool1 = true; // size is JVM-dependent
+        char char1 = 'a'; // 2 bytes (16 bits, UTF-16)
+
+        int int1 = 10; // 4 bytes (32 bits)
+        float float1 = 10.5f; // 4 bytes (32 bits, IEEE 754)
+
+        double double1 = 10.5; // 8 bytes (64 bits, IEEE 754)
+        long long1 = 1000000000000000000L; // 8 bytes (64 bits)
+
+        System.out.println("byte: " + Byte.BYTES + " bytes (" + Byte.SIZE + " bits)");
+        System.out.println("short: " + Short.BYTES + " bytes (" + Short.SIZE + " bits)");
+        System.out.println("int: " + Integer.BYTES + " bytes (" + Integer.SIZE + " bits)");
+        System.out.println("long: " + Long.BYTES + " bytes (" + Long.SIZE + " bits)");
+        System.out.println("float: " + Float.BYTES + " bytes (" + Float.SIZE + " bits)");
+        System.out.println("double: " + Double.BYTES + " bytes (" + Double.SIZE + " bits)");
+        System.out.println("char: " + Character.BYTES + " bytes (" + Character.SIZE + " bits)");
+
+        // in hex format
+        int hex1 = 0x1A; // decimal 26
+        int hex2 = 0xFF; // decimal 255
+        long hex3 = 0x7fffL; // decimal 32767, long literal
+        char hexChar = 0x41; // 'A' (Unicode 65)
+
+        // print decimals in hex format
+        int num = 255;
+        System.out.println("Decimal: " + num);
+        System.out.println("Hex: 0x" + Integer.toHexString(num));
+
+        /* simiarly for binary and octal */
+
 
         // boxed types are object counterparts of primitives.
         // int to Integer
