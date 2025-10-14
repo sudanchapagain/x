@@ -1,0 +1,610 @@
+_type: ExprWith
+attrs:
+  _type: ExprSet
+  recursive: false
+body:
+  _type: ExprList
+  elems:
+    - _type: ExprLiteral
+      value: 0
+      valueType: Int
+    - _type: ExprLiteral
+      value: 0.0
+      valueType: Float
+    - _type: ExprLiteral
+      value: ''
+      valueType: String
+    - _type: ExprLiteral
+      value: foo
+      valueType: String
+    - _type: ExprLiteral
+      value: 'foo
+
+        bar'
+      valueType: String
+    - _type: ExprLiteral
+      value: /root
+      valueType: Path
+    - _type: ExprVar
+      value: var1
+    - _type: ExprSelect
+      attrs:
+        - bar
+      default:
+        _type: ExprVar
+        value: baz
+      e:
+        _type: ExprVar
+        value: foo
+    - _type: ExprOpHasAttr
+      attrs:
+        - bar
+        - baz
+      e:
+        _type: ExprVar
+        value: foo
+    - _type: ExprSet
+      recursive: false
+    - _type: ExprSet
+      recursive: true
+    - _type: ExprSet
+      attrs:
+        attr1:
+          _type: ExprVar
+          value: value1
+        attr2:
+          _type: ExprVar
+          value: 'null'
+        attr3:
+          _type: ExprSet
+          attrs:
+            nested:
+              _type: ExprSet
+              attrs:
+                merged:
+                  _type: ExprLiteral
+                  value: 1
+                  valueType: Int
+                more:
+                  _type: ExprLiteral
+                  value: 0
+                  valueType: Int
+              recursive: false
+          recursive: false
+        fake dynamic attr:
+          _type: ExprLiteral
+          value: 42
+          valueType: Int
+        string attr:
+          _type: ExprLiteral
+          value: string value
+          valueType: String
+      dynamicAttrs:
+        - name:
+            _type: ExprVar
+            value: dynamicAttr
+          value:
+            _type: ExprSet
+            dynamicAttrs:
+              - name:
+                  _type: ExprConcatStrings
+                  es:
+                    - _type: ExprLiteral
+                      value: anotherOne
+                      valueType: String
+                    - _type: ExprLiteral
+                      value: ''
+                      valueType: String
+                  isInterpolation: false
+                value:
+                  _type: ExprVar
+                  value: 'null'
+            recursive: false
+      inherit:
+        foo:
+          _type: ExprVar
+          value: foo
+      inheritFrom:
+        - attrs:
+            - baz
+          from:
+            _type: ExprVar
+            value: bar
+        - attrs:
+            - thing
+          from:
+            _type: ExprCall
+            args:
+              - _type: ExprList
+                elems:
+                  - _type: ExprVar
+                    value: expression
+            fun:
+              _type: ExprVar
+              value: complicated
+      recursive: false
+    - _type: ExprSet
+      attrs:
+        attr1:
+          _type: ExprVar
+          value: value1
+        attr2:
+          _type: ExprVar
+          value: 'null'
+        attr3:
+          _type: ExprSet
+          attrs:
+            nested:
+              _type: ExprSet
+              attrs:
+                merged:
+                  _type: ExprLiteral
+                  value: 1
+                  valueType: Int
+                more:
+                  _type: ExprLiteral
+                  value: 0
+                  valueType: Int
+              recursive: false
+          recursive: false
+        fake dynamic attr:
+          _type: ExprLiteral
+          value: 42
+          valueType: Int
+        string attr:
+          _type: ExprLiteral
+          value: string value
+          valueType: String
+      dynamicAttrs:
+        - name:
+            _type: ExprVar
+            value: dynamicAttr
+          value:
+            _type: ExprSet
+            dynamicAttrs:
+              - name:
+                  _type: ExprConcatStrings
+                  es:
+                    - _type: ExprLiteral
+                      value: anotherOne
+                      valueType: String
+                    - _type: ExprLiteral
+                      value: ''
+                      valueType: String
+                  isInterpolation: false
+                value:
+                  _type: ExprVar
+                  value: 'null'
+            recursive: false
+      inherit:
+        foo:
+          _type: ExprVar
+          value: foo
+      inheritFrom:
+        - attrs:
+            - baz
+          from:
+            _type: ExprVar
+            value: bar
+        - attrs:
+            - thing
+          from:
+            _type: ExprCall
+            args:
+              - _type: ExprList
+                elems:
+                  - _type: ExprVar
+                    value: expression
+            fun:
+              _type: ExprVar
+              value: complicated
+      recursive: true
+    - _type: ExprLet
+      body:
+        _type: ExprLet
+        attrs:
+          attr1:
+            _type: ExprVar
+            value: value1
+          attr2:
+            _type: ExprVar
+            value: 'null'
+          attr3:
+            _type: ExprSet
+            attrs:
+              nested:
+                _type: ExprSet
+                attrs:
+                  merged:
+                    _type: ExprLiteral
+                    value: 1
+                    valueType: Int
+                  more:
+                    _type: ExprLiteral
+                    value: 0
+                    valueType: Int
+                recursive: false
+            recursive: false
+          fake dynamic attr:
+            _type: ExprLiteral
+            value: 42
+            valueType: Int
+          string attr:
+            _type: ExprLiteral
+            value: string value
+            valueType: String
+        body:
+          _type: ExprAssert
+          body:
+            _type: ExprAssert
+            body:
+              _type: ExprAssert
+              body:
+                _type: ExprList
+                elems: []
+              cond:
+                _type: ExprLet
+                body:
+                  _type: ExprOpEq
+                  e1:
+                    _type: ExprCall
+                    args:
+                      - _type: ExprSelect
+                        attrs:
+                          - overrideStuff
+                        e:
+                          _type: ExprSet
+                          recursive: false
+                    fun:
+                      _type: ExprVar
+                      value: myFunction
+                  e2:
+                    _type: ExprLiteral
+                    value: 4.2
+                    valueType: Float
+            cond:
+              _type: ExprVar
+              value: 'true'
+          cond:
+            _type: ExprVar
+            value: 'false'
+        inherit:
+          foo:
+            _type: ExprVar
+            value: foo
+        inheritFrom:
+          - attrs:
+              - baz
+            from:
+              _type: ExprVar
+              value: bar
+          - attrs:
+              - thing
+            from:
+              _type: ExprCall
+              args:
+                - _type: ExprList
+                  elems:
+                    - _type: ExprVar
+                      value: expression
+              fun:
+                _type: ExprVar
+                value: complicated
+    - _type: ExprLambda
+      arg: x
+      body:
+        _type: ExprVar
+        value: x
+    - _type: ExprLambda
+      arg: x
+      body:
+        _type: ExprLambda
+        arg: y
+        body:
+          _type: ExprLambda
+          arg: z
+          body:
+            _type: ExprCall
+            args:
+              - _type: ExprVar
+                value: y
+              - _type: ExprVar
+                value: x
+            fun:
+              _type: ExprVar
+              value: z
+    - _type: ExprLambda
+      body:
+        _type: ExprVar
+        value: 'null'
+      formalsEllipsis: false
+    - _type: ExprLambda
+      body:
+        _type: ExprVar
+        value: 'null'
+      formalsEllipsis: true
+    - _type: ExprLambda
+      arg: arg
+      body:
+        _type: ExprVar
+        value: 'null'
+      formalsEllipsis: false
+    - _type: ExprLambda
+      arg: all
+      body:
+        _type: ExprVar
+        value: all
+      formals:
+        bar: null
+        baz: null
+        foo:
+          _type: ExprVar
+          value: 'null'
+      formalsEllipsis: false
+    - _type: ExprLambda
+      arg: all
+      body:
+        _type: ExprVar
+        value: all
+      formals:
+        foo:
+          _type: ExprVar
+          value: 'null'
+      formalsEllipsis: true
+    - _type: ExprIf
+      cond:
+        _type: ExprVar
+        value: 'null'
+      else:
+        _type: ExprLiteral
+        value: 1
+        valueType: Int
+      then:
+        _type: ExprLiteral
+        value: 0
+        valueType: Int
+    - _type: ExprOpNot
+      e:
+        _type: ExprVar
+        value: 'true'
+    - _type: ExprCall
+      args:
+        - _type: ExprConcatStrings
+          es:
+            - _type: ExprLiteral
+              value: 7
+              valueType: Int
+            - _type: ExprCall
+              args:
+                - _type: ExprCall
+                  args:
+                    - _type: ExprCall
+                      args:
+                        - _type: ExprLiteral
+                          value: 0
+                          valueType: Int
+                        - _type: ExprLiteral
+                          value: 5
+                          valueType: Int
+                      fun:
+                        _type: ExprVar
+                        value: __sub
+                    - _type: ExprLiteral
+                      value: 12
+                      valueType: Int
+                  fun:
+                    _type: ExprVar
+                    value: __mul
+                - _type: ExprLiteral
+                  value: 3
+                  valueType: Int
+              fun:
+                _type: ExprVar
+                value: __div
+          isInterpolation: false
+        - _type: ExprLiteral
+          value: 1
+          valueType: Int
+      fun:
+        _type: ExprVar
+        value: __sub
+    - _type: ExprConcatStrings
+      es:
+        - _type: ExprConcatStrings
+          es:
+            - _type: ExprConcatStrings
+              es:
+                - _type: ExprLiteral
+                  value: 0
+                  valueType: Int
+                - _type: ExprCall
+                  args:
+                    - _type: ExprLiteral
+                      value: 0
+                      valueType: Int
+                    - _type: ExprLiteral
+                      value: 10
+                      valueType: Int
+                  fun:
+                    _type: ExprVar
+                    value: __sub
+              isInterpolation: false
+            - _type: ExprCall
+              args:
+                - _type: ExprLiteral
+                  value: 0
+                  valueType: Int
+                - _type: ExprCall
+                  args:
+                    - _type: ExprLiteral
+                      value: 0
+                      valueType: Int
+                    - _type: ExprLiteral
+                      value: 11
+                      valueType: Int
+                  fun:
+                    _type: ExprVar
+                    value: __sub
+              fun:
+                _type: ExprVar
+                value: __sub
+          isInterpolation: false
+        - _type: ExprCall
+          args:
+            - _type: ExprLiteral
+              value: 0
+              valueType: Int
+            - _type: ExprVar
+              value: x
+          fun:
+            _type: ExprVar
+            value: __sub
+      isInterpolation: false
+    - _type: ExprIf
+      cond:
+        _type: ExprOpImpl
+        e1:
+          _type: ExprOpEq
+          e1:
+            _type: ExprCall
+            args:
+              - _type: ExprLiteral
+                value: 1
+                valueType: Int
+              - _type: ExprLiteral
+                value: 2
+                valueType: Int
+            fun:
+              _type: ExprVar
+              value: __lessThan
+          e2:
+            _type: ExprCall
+            args:
+              - _type: ExprLiteral
+                value: 1
+                valueType: Int
+              - _type: ExprLiteral
+                value: 2
+                valueType: Int
+            fun:
+              _type: ExprVar
+              value: __lessThan
+        e2:
+          _type: ExprOpOr
+          e1:
+            _type: ExprOpAnd
+            e1:
+              _type: ExprOpNEq
+              e1:
+                _type: ExprOpNot
+                e:
+                  _type: ExprCall
+                  args:
+                    - _type: ExprLiteral
+                      value: 2
+                      valueType: Int
+                    - _type: ExprLiteral
+                      value: 1
+                      valueType: Int
+                  fun:
+                    _type: ExprVar
+                    value: __lessThan
+              e2:
+                _type: ExprOpNot
+                e:
+                  _type: ExprCall
+                  args:
+                    - _type: ExprLiteral
+                      value: 2
+                      valueType: Int
+                    - _type: ExprLiteral
+                      value: 1
+                      valueType: Int
+                  fun:
+                    _type: ExprVar
+                    value: __lessThan
+            e2:
+              _type: ExprVar
+              value: 'true'
+          e2:
+            _type: ExprVar
+            value: 'false'
+      else:
+        _type: ExprVar
+        value: err
+      then:
+        _type: ExprLiteral
+        value: 1
+        valueType: Int
+    - _type: ExprOpUpdate
+      e1:
+        _type: ExprVar
+        value: foo
+      e2:
+        _type: ExprOpUpdate
+        e1:
+          _type: ExprSet
+          recursive: false
+        e2:
+          _type: ExprSelect
+          attrs:
+            - baz
+          e:
+            _type: ExprVar
+            value: bar
+    - _type: ExprOpConcatLists
+      e1:
+        _type: ExprVar
+        value: foo
+      e2:
+        _type: ExprOpConcatLists
+        e1:
+          _type: ExprList
+          elems: []
+        e2:
+          _type: ExprCall
+          args:
+            - _type: ExprVar
+              value: cond
+            - _type: ExprVar
+              value: value
+          fun:
+            _type: ExprVar
+            value: optional
+    - _type: ExprConcatStrings
+      es:
+        - _type: ExprConcatStrings
+          es:
+            - _type: ExprLiteral
+              value: 1
+              valueType: Int
+            - _type: ExprLiteral
+              value: 2
+              valueType: Int
+          isInterpolation: false
+        - _type: ExprLiteral
+          value: 3
+          valueType: Int
+      isInterpolation: false
+    - _type: ExprConcatStrings
+      es:
+        - _type: ExprLiteral
+          value: ''
+          valueType: String
+      isInterpolation: true
+    - _type: ExprConcatStrings
+      es:
+        - _type: ExprLiteral
+          value: 'Foo '
+          valueType: String
+        - _type: ExprConcatStrings
+          es:
+            - _type: ExprLiteral
+              value: 3
+              valueType: Int
+            - _type: ExprLiteral
+              value: '2'
+              valueType: String
+          isInterpolation: false
+      isInterpolation: true
+    - _type: ExprPos

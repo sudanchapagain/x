@@ -1,0 +1,39 @@
+_type: ExprLambda
+body:
+  _type: ExprCall
+  args:
+    - _type: ExprSet
+      attrs:
+        name:
+          _type: ExprLiteral
+          value: libXi-6.0.1
+          valueType: String
+        src:
+          _type: ExprCall
+          args:
+            - _type: ExprSet
+              attrs:
+                md5:
+                  _type: ExprLiteral
+                  value: 7e935a42428d63a387b3c048be0f2756
+                  valueType: String
+                url:
+                  _type: ExprLiteral
+                  value: http://freedesktop.org/~xlibs/release/libXi-6.0.1.tar.bz2
+                  valueType: String
+              recursive: false
+          fun:
+            _type: ExprVar
+            value: fetchurl
+      recursive: false
+  fun:
+    _type: ExprSelect
+    attrs:
+      - mkDerivation
+    e:
+      _type: ExprVar
+      value: stdenv
+formals:
+  fetchurl: null
+  stdenv: null
+formalsEllipsis: false

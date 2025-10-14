@@ -1,0 +1,2 @@
+# This file exists, because the CI depotfmt script calls rustfmt directly, instead of cargo fmt.
+edition = "2024"

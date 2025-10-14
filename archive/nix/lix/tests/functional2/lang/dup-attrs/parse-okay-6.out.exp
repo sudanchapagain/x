@@ -1,0 +1,18 @@
+_type: ExprSet
+attrs:
+  services:
+    _type: ExprSet
+    attrs:
+      ssh:
+        _type: ExprSet
+        attrs:
+          enable:
+            _type: ExprVar
+            value: 'true'
+          port:
+            _type: ExprLiteral
+            value: 23
+            valueType: Int
+        recursive: false
+    recursive: false
+recursive: false

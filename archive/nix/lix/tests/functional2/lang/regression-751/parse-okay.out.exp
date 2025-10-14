@@ -1,0 +1,25 @@
+_type: ExprLet
+attrs:
+  const:
+    _type: ExprLambda
+    arg: a
+    body:
+      _type: ExprLiteral
+      value: const
+      valueType: String
+body:
+  _type: ExprConcatStrings
+  es:
+    - _type: ExprCall
+      args:
+        - _type: ExprSet
+          attrs:
+            x:
+              _type: ExprLiteral
+              value: q
+              valueType: String
+          recursive: false
+      fun:
+        _type: ExprVar
+        value: const
+  isInterpolation: true

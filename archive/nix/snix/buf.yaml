@@ -1,0 +1,12 @@
+version: v1
+
+lint:
+  allow_comment_ignores: true
+  use:
+    - BASIC
+    - FILE_LOWER_SNAKE_CASE
+  except:
+    - ENUM_VALUE_UPPER_SNAKE_CASE
+    - PACKAGE_DIRECTORY_MATCH
+  ignore:
+    - nix/buildGo

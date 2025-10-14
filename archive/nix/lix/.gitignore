@@ -1,0 +1,43 @@
+outputs/
+
+# GNU Global
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+
+# ccls
+/.ccls-cache
+
+# auto-generated compilation database
+compile_commands.json
+rust-project.json
+
+result
+result-*
+
+.vscode/
+.direnv/
+
+# clangd and possibly more
+.cache/
+
+# Mac OS
+.DS_Store
+
+# ClangBuildAnalyzer output, see maintainers/buildtime_report.sh
+buildtime.bin
+
+.envrc.local
+# We generate this with a Nix shell hook
+/.pre-commit-config.yaml
+/.nocontribmsg
+/release
+
+# Rust build files when using Cargo (not actually supported for building but it spews the files anyway)
+/target/
+
+# Python compiled files from the code generators and test suite
+*.pyc
+
+**/.idea

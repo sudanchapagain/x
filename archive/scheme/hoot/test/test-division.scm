@@ -1,0 +1,209 @@
+;;; Copyright (C) 2023 Robin Templeton
+;;; Copyright (C) 2024 David Thompson <dave@spritely.institute>
+;;;
+;;; Licensed under the Apache License, Version 2.0 (the "License");
+;;; you may not use this file except in compliance with the License.
+;;; You may obtain a copy of the License at
+;;;
+;;;    http://www.apache.org/licenses/LICENSE-2.0
+;;;
+;;; Unless required by applicable law or agreed to in writing, software
+;;; distributed under the License is distributed on an "AS IS" BASIS,
+;;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+;;; See the License for the specific language governing permissions and
+;;; limitations under the License.
+
+;;; Commentary:
+;;;
+;;; Tests for the various forms of division.
+;;;
+;;; Code:
+
+(use-modules (ice-9 format)
+             (srfi srfi-64)
+             (test utils))
+
+(test-begin "test-division")
+
+;; quotient, remainder and modulus with a flonum argument
+(test-call "12.0" (lambda (a b) (quotient a b)) 123.0 10.0)
+(test-call "12.0" (lambda (a b) (quotient a b)) 123.0 10)
+(test-call "12.0" (lambda (a b) (quotient a b)) 123 10.0)
+(test-call "53687091.0" (lambda (a b) (quotient a b)) 536870912.0 10.0)
+(test-call "53687091.0" (lambda (a b) (quotient a b)) 536870912.0 10)
+(test-call "53687091.0" (lambda (a b) (quotient a b)) 536870912 10.0)
+
+(test-call "3.0" (lambda (a b) (remainder a b)) 123.0 10.0)
+(test-call "3.0" (lambda (a b) (remainder a b)) 123.0 10)
+(test-call "3.0" (lambda (a b) (remainder a b)) 123 10.0)
+(test-call "2.0" (lambda (a b) (remainder a b)) 536870912.0 10.0)
+(test-call "2.0" (lambda (a b) (remainder a b)) 536870912.0 10)
+(test-call "2.0" (lambda (a b) (remainder a b)) 536870912 10.0)
+
+(test-call "3.0" (lambda (a b) (modulo a b)) 123.0 10.0)
+(test-call "3.0" (lambda (a b) (modulo a b)) 123.0 10)
+(test-call "3.0" (lambda (a b) (modulo a b)) 123 10.0)
+(test-call "2.0" (lambda (a b) (modulo a b)) 536870912.0 10.0)
+(test-call "2.0" (lambda (a b) (modulo a b)) 536870912.0 10)
+(test-call "2.0" (lambda (a b) (modulo a b)) 536870912 10.0)
+
+;; Checks the different-sign adjustment in $mod's fixnum-fixnum case,
+;; currently used only for modulo with a flonum argument (which calls
+;; $mod directly, bypassing the fixnum fast path in `(hoot compile)').
+(test-call "-7.0" (lambda (a b) (modulo a b)) 123.0 -10.0)
+(test-call "-7.0" (lambda (a b) (modulo a b)) 123.0 -10)
+(test-call "-7.0" (lambda (a b) (modulo a b)) 123 -10.0)
+(test-call "7.0" (lambda (a b) (modulo a b)) -123.0 10.0)
+(test-call "7.0" (lambda (a b) (modulo a b)) -123.0 10)
+(test-call "7.0" (lambda (a b) (modulo a b)) -123 10.0)
+
+;; truncating division
+(test-call "(2 1)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           5 2)
+(test-call "(-2 -1)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           -5 2)
+(test-call "(-2 1)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           5 -2)
+(test-call "(2 -1)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           -5 -2)
+(test-call "(2.0 -1.0)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           -5.0 -2.0)
+(test-call "(2.0 -1.0)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           -5.0 -2)
+(test-call "(2.0 -1.0)"
+           (lambda (a b) (call-with-values
+                             (lambda () (truncate/ a b))
+                           (lambda x x)))
+           -5 -2.0)
+
+(test-call "2" (lambda (a b) (truncate-quotient a b)) 5 2)
+(test-call "-2" (lambda (a b) (truncate-quotient a b)) -5 2)
+(test-call "-2" (lambda (a b) (truncate-quotient a b)) 5 -2)
+(test-call "2" (lambda (a b) (truncate-quotient a b)) -5 -2)
+(test-call "2.0" (lambda (a b) (truncate-quotient a b)) -5.0 -2.0)
+(test-call "2.0" (lambda (a b) (truncate-quotient a b)) -5.0 -2)
+(test-call "2.0" (lambda (a b) (truncate-quotient a b)) -5 -2.0)
+
+(test-call "1" (lambda (a b) (truncate-remainder a b)) 5 2)
+(test-call "-1" (lambda (a b) (truncate-remainder a b)) -5 2)
+(test-call "1" (lambda (a b) (truncate-remainder a b)) 5 -2)
+(test-call "-1" (lambda (a b) (truncate-remainder a b)) -5 -2)
+(test-call "-1.0" (lambda (a b) (truncate-remainder a b)) -5.0 -2.0)
+(test-call "-1.0" (lambda (a b) (truncate-remainder a b)) -5.0 -2)
+(test-call "-1.0" (lambda (a b) (truncate-remainder a b)) -5 -2.0)
+
+;; flooring division
+(test-call "(2 1)" (lambda (a b) (call-with-values
+                                   (lambda () (floor/ a b))
+                                 (lambda x x)))
+           5 2)
+(test-call "(-3 1)" (lambda (a b) (call-with-values
+                                    (lambda () (floor/ a b))
+                                  (lambda x x)))
+           -5 2)
+(test-call "(-3 -1)" (lambda (a b) (call-with-values
+                                     (lambda () (floor/ a b))
+                                   (lambda x x)))
+           5 -2)
+(test-call "(2 -1)" (lambda (a b) (call-with-values
+                                    (lambda () (floor/ a b))
+                                  (lambda x x)))
+           -5 -2)
+(test-call "(2.0 -1.0)" (lambda (a b) (call-with-values
+                                          (lambda () (floor/ a b))
+                                        (lambda x x)))
+           -5.0 -2.0)
+(test-call "(2.0 -1.0)" (lambda (a b) (call-with-values
+                                          (lambda () (floor/ a b))
+                                        (lambda x x)))
+           -5.0 -2)
+(test-call "(2.0 -1.0)" (lambda (a b) (call-with-values
+                                          (lambda () (floor/ a b))
+                                        (lambda x x)))
+           -5 -2.0)
+
+(test-call "2" (lambda (a b) (floor-quotient a b)) 5 2)
+(test-call "-3" (lambda (a b) (floor-quotient a b)) -5 2)
+(test-call "-3" (lambda (a b) (floor-quotient a b)) 5 -2)
+(test-call "2" (lambda (a b) (floor-quotient a b)) -5 -2)
+(test-call "2.0" (lambda (a b) (floor-quotient a b)) -5.0 -2.0)
+(test-call "2.0" (lambda (a b) (floor-quotient a b)) -5.0 -2)
+(test-call "2.0" (lambda (a b) (floor-quotient a b)) -5 -2.0)
+
+(test-call "1" (lambda (a b) (floor-remainder a b)) 5 2)
+(test-call "1" (lambda (a b) (floor-remainder a b)) -5 2)
+(test-call "-1" (lambda (a b) (floor-remainder a b)) 5 -2)
+(test-call "-1" (lambda (a b) (floor-remainder a b)) -5 -2)
+(test-call "-1.0" (lambda (a b) (floor-remainder a b)) -5.0 -2.0)
+(test-call "-1.0" (lambda (a b) (floor-remainder a b)) -5.0 -2)
+(test-call "-1.0" (lambda (a b) (floor-remainder a b)) -5 -2.0)
+
+(with-additional-imports ((only (hoot numbers)
+                                ceiling/
+                                ceiling-quotient
+                                ceiling-remainder
+                                euclidean/
+                                euclidean-quotient
+                                euclidean-remainder))
+  (test-call "13" (lambda (a b) (ceiling-quotient a b)) 123 10)
+  (test-call "-7" (lambda (a b) (ceiling-remainder a b)) 123 10)
+  (test-call "(13 -7)"
+             (lambda (a b) (call-with-values (lambda () (ceiling/ a b)) list))
+             123 10)
+  (test-call "(-12 3)"
+             (lambda (a b) (call-with-values (lambda () (ceiling/ a b)) list))
+             123 -10)
+  (test-call "(-12 -3)"
+             (lambda (a b) (call-with-values (lambda () (ceiling/ a b)) list))
+             -123 10)
+  (test-call "(13 7)"
+             (lambda (a b) (call-with-values (lambda () (ceiling/ a b)) list))
+             -123 -10)
+  (test-call "(2.0 3.799999999999997)"
+             (lambda (a b) (call-with-values (lambda () (ceiling/ a b)) list))
+             -123.2 -63.5)
+  ;; FIXME: There's something wrong with fractions.
+  ;; (test-call "(-3 22/21)"
+  ;;            (lambda (a b) (call-with-values (lambda () (ceiling/ a b)) list))
+  ;;            13/3 -10/7)
+  (test-call "12" (lambda (a b) (euclidean-quotient a b)) 123 10)
+  (test-call "3" (lambda (a b) (euclidean-remainder a b)) 123 10)
+  (test-call "(12 3)"
+             (lambda (a b) (call-with-values (lambda () (euclidean/ a b)) list))
+             123 10)
+  (test-call "(-12 3)"
+             (lambda (a b) (call-with-values (lambda () (euclidean/ a b)) list))
+             123 -10)
+  (test-call "(-13 7)"
+             (lambda (a b) (call-with-values (lambda () (euclidean/ a b)) list))
+             -123 10)
+  (test-call "(13 7)"
+             (lambda (a b) (call-with-values (lambda () (euclidean/ a b)) list))
+             -123 -10)
+  (test-call "(2.0 3.799999999999997)"
+             (lambda (a b) (call-with-values (lambda () (euclidean/ a b)) list))
+             -123.2 -63.5)
+  ;; (test-call "(-3 22/21)"
+  ;;            (lambda (a b) (call-with-values (lambda () (euclidean/ a b)) list))
+  ;;            16/3 -10/7)
+  )
+
+(test-end* "test-division")

@@ -1,0 +1,19 @@
+_type: ExprSet
+attrs:
+  x:
+    _type: ExprSet
+    attrs:
+      q:
+        _type: ExprLiteral
+        value: 3
+        valueType: Int
+      y:
+        _type: ExprLiteral
+        value: 3
+        valueType: Int
+      z:
+        _type: ExprLiteral
+        value: 3
+        valueType: Int
+    recursive: false
+recursive: false

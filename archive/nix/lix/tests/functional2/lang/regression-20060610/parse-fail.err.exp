@@ -1,0 +1,6 @@
+error: undefined variable 'gcc'
+       at /pwd/in.nix:9:11:
+            8| ({
+            9|   inherit gcc;
+             |           ^
+           10| }).gcc

@@ -1,0 +1,1 @@
+--arg lib import(./lib.nix) --argstr xyzzy xyzzy! -A result

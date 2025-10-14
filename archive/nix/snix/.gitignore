@@ -1,0 +1,16 @@
+# Ignore the garbage folder, in which I slowly assemble a bunch of
+# trash locally that might be valuable in the future.
+garbage/
+
+# Nix gcroot symlinks created by .envrc
+/.gcroots/*
+
+# Ignore direnv data
+.direnv
+
+# Ignore Nix result symlinks
+result
+result-*
+# Nix result symlink used by //nix/buildkite
+/nix-buildkite-extra-step-command-script
+/nix-buildkite-extra-step-command-script-*

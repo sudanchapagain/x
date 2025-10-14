@@ -1,0 +1,26 @@
+[package]
+name = "roast-cli"
+description = "Create archive tarballs and roast them!"
+authors.workspace = true
+license.workspace = true
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+clap = { workspace = true, features = ["help", "derive", "wrap_help"] }
+terminfo = "0.9.0"
+tracing = { version = "0.1", features = [
+        "max_level_trace",
+        "release_max_level_debug",
+] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tempfile = "3.12.0"
+libroast = { version = "10", path = "../libroast" }
+
+[features]
+obs = ["libroast/obs"]
+
+[lints]
+workspace = true

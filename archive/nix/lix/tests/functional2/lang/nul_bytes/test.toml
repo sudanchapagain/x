@@ -1,0 +1,17 @@
+[[test]]
+name = "eval-depr"
+runner = "eval-fail"
+
+[[test]]
+name = "eval-allow-depr"
+runner = "eval-okay"
+flags = ["--extra-deprecated-features", "nul-bytes"]
+
+[[test]]
+name = "parse-depr"
+runner = "parse-fail"
+
+[[test]]
+name = "parse-allow-depr"
+runner = "parse-okay"
+flags = ["--extra-deprecated-features", "nul-bytes"]
