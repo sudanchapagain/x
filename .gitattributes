@@ -1,7 +1,15 @@
 * text=auto eol=crlf
 
 *.php linguist-language=PHP
+
+# being recognised as tree shitter query
+*.scm linguist-language=Scheme
+
+# it's in tests of hoot. not source code
+*.wasm linguist-detectable=false
+*.wat linguist-detectable=false
+
 *.html linguist-detectable=false
 *.html linguist-documentation=false
 *.css linguist-detectable=false
-*.css linguist-documentation=true
+*.css linguist-documentation=false
