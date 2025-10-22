@@ -1,6 +1,0 @@
-[workspace]
-resolver = "2"
-members = ["lix/lix-doc"]
-
-[workspace.package]
-edition = "2021"

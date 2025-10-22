@@ -1,9 +1,0 @@
-error:
-       … while calling the 'sub' builtin
-         at /pwd/in.nix:4:6:
-            3|   b = 2;
-            4| in a - b
-             |      ^
-            5|
-
-       error: integer overflow in subtracting -9223372036854775807 - 2

@@ -1,3 +1,0 @@
-[[test]]
-runner = "eval-okay"
-flags = [ "--extra-deprecated-features", "rec-set-overrides" ]

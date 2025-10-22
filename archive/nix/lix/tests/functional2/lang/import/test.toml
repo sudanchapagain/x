@@ -1,3 +1,0 @@
-[[test]]
-runner = "eval-okay"
-extra-files = ["imported.nix", "imported2.nix"]
