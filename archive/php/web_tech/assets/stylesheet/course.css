@@ -1,18 +1,18 @@
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 20px;
 }
 
 .courseBox {
-  border: 1px solid #999;
-  padding: 50px;
-  text-align: center;
-  background-color: #faf0f0;
-  border-radius: 10px;
+	border: 1px solid #999;
+	padding: 50px;
+	text-align: center;
+	background-color: #faf0f0;
+	border-radius: 10px;
 }
 
 .courseBox:hover {
-  border-color: #000;
-  box-shadow: 0 0 10px #00000033;
+	border-color: #000;
+	box-shadow: 0 0 10px #00000033;
 }

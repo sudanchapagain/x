@@ -1,92 +1,92 @@
 h1 {
-  font-size: 3rem;
-  text-align: center;
-  margin: 40px 0;
+	font-size: 3rem;
+	text-align: center;
+	margin: 40px 0;
 }
 
 .calnav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 30px;
-  max-width: 800px;
-  padding: 20px;
-  margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px;
+	max-width: 800px;
+	padding: 20px;
+	margin: 0 auto;
 }
 
 .calnav > div,
 .calnav > a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	text-decoration: none;
 }
 
 .calnavprev,
 .calnavnext {
-  font-weight: 500;
-  background-color: #c1dcf7;
-  padding: 12px 24px;
-  border-radius: 8px;
+	font-weight: 500;
+	background-color: #c1dcf7;
+	padding: 12px 24px;
+	border-radius: 8px;
 }
 
 .calnavnow {
-  font-weight: 700;
-  font-size: 2rem;
-  padding: 12px 24px;
+	font-weight: 700;
+	font-size: 2rem;
+	padding: 12px 24px;
 }
 
 .calcontainer {
-  max-width: 730px;
-  margin: 0 auto;
+	max-width: 730px;
+	margin: 0 auto;
 }
 
 .calender {
-  padding: 50px 20px;
-  margin: 0px auto;
-  display: flex;
-  flex-direction: column;
-  background-color: #fdb18a;
-  border-radius: 12px;
+	padding: 50px 20px;
+	margin: 0px auto;
+	display: flex;
+	flex-direction: column;
+	background-color: #fdb18a;
+	border-radius: 12px;
 }
 
 .calender-header {
-  display: flex;
-  font-weight: 700;
-  align-items: center;
-  justify-content: space-around;
+	display: flex;
+	font-weight: 700;
+	align-items: center;
+	justify-content: space-around;
 }
 
 .calender-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 }
 
 .calender-header-item {
-  text-align: center;
-  padding: 5px;
+	text-align: center;
+	padding: 5px;
 }
 
 .caldivider {
-  border: 1px solid #000;
-  width: 90%;
-  margin: 10px auto;
+	border: 1px solid #000;
+	width: 90%;
+	margin: 10px auto;
 }
 .calender-item {
-  text-align: center;
-  padding: 10px 15px;
+	text-align: center;
+	padding: 10px 15px;
 }
 
 .alt:nth-child(odd) {
-  font-weight: 700;
+	font-weight: 700;
 }
 
 .alt1:nth-child(even) {
-  font-weight: 700;
+	font-weight: 700;
 }
 
 .calender-item:last-child {
-  color: red;
-  font-weight: 700;
+	color: red;
+	font-weight: 700;
 }
