@@ -1,6 +1,6 @@
 package src;
 
-// Constructors, Method overloading (Constructor Overloading implementation)
+// constructors, method overloading (constructor overloading implementation)
 public class ConstClass {
     public int x;
 

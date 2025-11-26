@@ -2,7 +2,7 @@ package src;
 
 import java.util.*;
 
-// Collections Framework: No use of collections like List, Set, Map, or Queue.
+// collections framework: no use of collections like list, set, map, or queue.
 public class Collect {
     public void collect() {
         Set<String> myset = new HashSet<>();

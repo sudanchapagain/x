@@ -1,7 +1,7 @@
 package src;
 
 /*
- * Single-threaded systems use an approach called an event loop with polling.
+ * single-threaded systems use an approach called an event loop with polling.
  * In this model, a single thread of control runs in an infinite loop, polling
  * a single event queue to decide what to do next. Once this polling mechanism
  * returns with, say, a signal that a network file is ready to be read, then
@@ -109,7 +109,7 @@ package src;
 public class Threado extends Thread {
     @Override
     public void run() {
-        System.out.println("Thread is running.");
+        System.out.println("thread is running.");
     }
 
     public void myThread() {
@@ -117,7 +117,7 @@ public class Threado extends Thread {
         thread.start();
     }
 
-    // Synchronization
+    // synchronization
     private int count = 0;
 
     public synchronized void increment() {

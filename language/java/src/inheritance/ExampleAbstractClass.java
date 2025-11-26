@@ -2,7 +2,7 @@ package src.inheritance;
 
 import src.inheritance.abstractClass.*;
 
-// classes, Abstract class, inheritance, Method overriding
+// classes, abstract class, inheritance, method overriding
 public class ExampleAbstractClass extends exampleAbstractClass {
     @Override
     public void something() {

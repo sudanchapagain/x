@@ -24,15 +24,15 @@ public class JavaFXExamples extends Application {
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
 
-        tabPane.getTabs().add(new Tab("Basic Controls", createBasicControls()));
+        tabPane.getTabs().add(new Tab("basic controls", createBasicControls()));
         tabPane.getTabs().add(new Tab("Layouts", createLayouts()));
-        tabPane.getTabs().add(new Tab("Bindings", createBindingsExample()));
-        tabPane.getTabs().add(new Tab("Events", createEventsExample()));
-        tabPane.getTabs().add(new Tab("Animation", createAnimationExample()));
-        tabPane.getTabs().add(new Tab("Charts", createChartsExample()));
+        tabPane.getTabs().add(new Tab("bindings", createBindingsExample()));
+        tabPane.getTabs().add(new Tab("events", createEventsExample()));
+        tabPane.getTabs().add(new Tab("animation", createAnimationExample()));
+        tabPane.getTabs().add(new Tab("charts", createChartsExample()));
 
         Scene scene = new Scene(tabPane, 800, 600);
-        primaryStage.setTitle("JavaFX Examples");
+        primaryStage.setTitle("javaFX examples");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -41,12 +41,12 @@ public class JavaFXExamples extends Application {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
 
-        Label label = new Label("Enter Your Name:");
+        Label label = new Label("enter your name:");
         TextField textField = new TextField();
-        Button button = new Button("Greet Me");
+        Button button = new Button("greet me");
         Label greetingLabel = new Label();
 
-        button.setOnAction(e -> greetingLabel.setText("Hello, " + textField.getText() + "!"));
+        button.setOnAction(e -> greetingLabel.setText("hello, " + textField.getText() + "!"));
 
         vbox.getChildren().addAll(label, textField, button, greetingLabel);
         return vbox;
@@ -59,12 +59,12 @@ public class JavaFXExamples extends Application {
         top.setStyle("-fx-background-color: lightblue;");
         top.setPadding(new Insets(10));
         top.setAlignment(Pos.CENTER);
-        top.getChildren().add(new Label("Top Section"));
+        top.getChildren().add(new Label("top section"));
 
         VBox left = new VBox(10);
         left.setStyle("-fx-background-color: lightgreen;");
         left.setPadding(new Insets(10));
-        left.getChildren().addAll(new Button("Option 1"), new Button("Option 2"));
+        left.getChildren().addAll(new Button("option 1"), new Button("option 2"));
 
         GridPane center = new GridPane();
         center.setPadding(new Insets(10));
@@ -88,7 +88,7 @@ public class JavaFXExamples extends Application {
         Label label = new Label();
         label.textProperty().bind(slider.valueProperty().asString("%.2f"));
 
-        vbox.getChildren().addAll(new Label("Adjust the slider:"), slider, label);
+        vbox.getChildren().addAll(new Label("adjust the slider:"), slider, label);
         return vbox;
     }
 
@@ -96,10 +96,10 @@ public class JavaFXExamples extends Application {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
 
-        Button button = new Button("Click Me");
-        Label label = new Label("Button not clicked.");
+        Button button = new Button("click me");
+        Label label = new Label("button not clicked.");
 
-        button.setOnMouseClicked(e -> label.setText("Button clicked!"));
+        button.setOnMouseClicked(e -> label.setText("button clicked!"));
 
         vbox.getChildren().addAll(button, label);
         return vbox;
@@ -124,13 +124,13 @@ public class JavaFXExamples extends Application {
 
     private Pane createChartsExample() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Java", 25),
-                new PieChart.Data("Python", 35),
-                new PieChart.Data("JavaScript", 40)
+                new PieChart.Data("java", 25),
+                new PieChart.Data("python", 35),
+                new PieChart.Data("javascript", 40)
         );
 
         PieChart pieChart = new PieChart(pieChartData);
-        pieChart.setTitle("Programming Language Popularity");
+        pieChart.setTitle("programming language popularity");
 
         return pieChart;
     }

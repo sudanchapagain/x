@@ -1,25 +1,25 @@
 package src;
 
-// Generic class, Generic Method, Getter, setter, bounded generics
+// generic class, generic method, getter, setter, bounded generics
 public class GenericClass<T> {
-    // To bound to only certain types `GenericClass<T extends Number>`
+    // to bound to only certain types `GenericClass<T extends Number>`
     private T content;
 
     public GenericClass(T content) {
         this.content = content;
     }
 
-    // Getter
+    // getter
     public T getContent() {
         return content;
     }
 
-    // Setter
+    // setter
     public void setContent(T content) {
         this.content = content;
     }
 
-    // Generic method
+    // generic method
     public <T> void printArray(T[] array) {
         for (T element : array) {
             System.out.println(element);
@@ -27,15 +27,15 @@ public class GenericClass<T> {
     }
 
     // NOTE:
-    // Interfaces can be made with generics.
-    // When to use Type parameter (T) or Wildcard (?)
+    // interfaces can be made with generics.
+    // when to use type parameter (T) or wildcard (?)
     // use (T)
-    //      When type is known,
+    //      when type is known,
     //      will be known at instantiation or invocation,
-    //      Work with specific type,
-    //      Ensure type safety.
+    //      work with specific type,
+    //      ensure type safety.
     // use (?)
-    //      When type is not known,
+    //      when type is not known,
     //      do not care about type,
     //      only read from a collection.
     // use (? extends T)
@@ -45,6 +45,6 @@ public class GenericClass<T> {
     // use (? super T)
     //      add items of type T to a collection,
     //      allow any type that is a supertype of T,
-    //      only need to read items as Object,
+    //      only need to read items as object,
     //      ensure that the collection can accept T or its subtypes.
 }

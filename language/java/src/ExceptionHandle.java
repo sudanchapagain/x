@@ -1,6 +1,6 @@
 package src;
 
-// Exception Handling
+// exception handling
 public class ExceptionHandle {
     public void Exceptioner() {
         /*
@@ -32,13 +32,14 @@ public class ExceptionHandle {
            NoSuchMethodException -> A requested method does not exist.
            ReflectiveOperationException -> Superclass of reflection-related exceptions.
         */
+
         try {
             int result = divide(10, 0);
-            System.out.println("Division Result: " + result);
+            System.out.println("division result: " + result);
         } catch (ArithmeticException e) {
-            System.out.println("Caught an exception: " + e.getMessage());
+            System.out.println("caught an exception: " + e.getMessage());
         } finally {
-            System.out.println("This is the finally block.");
+            System.out.println("this is the finally block.");
         }
     }
 
@@ -47,7 +48,7 @@ public class ExceptionHandle {
     }
 }
 
-// This program creates a custom exception type.
+// this program creates a custom exception type.
 class MyException extends Exception {
     private int detail;
 
@@ -56,17 +57,17 @@ class MyException extends Exception {
     }
 
     public String toString() {
-        return "MyException[" + detail + "]";
+        return "my exception[" + detail + "]";
     }
 }
 
 class ExceptionDemo {
     static void compute(int a) throws MyException {
-        System.out.println("Called compute(" + a + ")");
+        System.out.println("called compute(" + a + ")");
         if (a > 10) {
             throw new MyException(a);
         }
-        System.out.println("Normal exit");
+        System.out.println("normal exit");
     }
 
     public static void main(String[] args) {
@@ -74,12 +75,12 @@ class ExceptionDemo {
             compute(1);
             compute(20);
         } catch (MyException e) {
-            System.out.println("Caught " + e);
+            System.out.println("caught " + e);
         }
     }
 }
 
-// Demonstrate exception chaining.
+// demonstrate exception chaining.
 class ChainExcDemo {
     static void demoproc() {
         // create an exception
@@ -94,16 +95,16 @@ class ChainExcDemo {
             demoproc();
         } catch(NullPointerException e) {
             // display top level exception
-            System.out.println("Caught: " + e);
+            System.out.println("caught: " + e);
             // display cause exception
-            System.out.println("Original cause: " +
+            System.out.println("original cause: " +
             e.getCause());
         }
     }
 }
 
-// The following program shows the multi-catch feature in action:
-// Demonstrate the multi-catch feature.
+// the following program shows the multi-catch feature in action:
+// demonstrate the multi-catch feature.
 class MultiCatch {
     public static void main(String[] args) {
         int a=10, b=0;
@@ -113,8 +114,8 @@ class MultiCatch {
             vals[10] = 19; // generate an ArrayIndexOutOfBoundsException
             // This catch clause catches both exceptions.
         } catch(ArithmeticException | ArrayIndexOutOfBoundsException e) {
-            System.out.println("Exception caught: " + e);
+            System.out.println("exception caught: " + e);
         }
-        System.out.println("After multi-catch.");
+        System.out.println("after multi-catch.");
     }
 }

@@ -1,20 +1,19 @@
-'use strict';
+"use strict";
 // directive in JavaScript that enables strict mode
 // must use let or var (if none, js assumes global)
 // must not have duplicate params
 
 // select DOM elements
-document.getElementById('heading').innerHTML = "Hello World";
+document.getElementById("heading").innerHTML = "Hello World";
 
 // diff between var & let
 function varEX() {
-    var x = 12;
+    var _x = 12;
     if (true) {
         var x = 13;
         console.log("Inside if block with var:" + x);
     }
     console.log("Outside if block with var" + x);
-
 }
 function letEx() {
     let y = 1;
@@ -34,7 +33,9 @@ let myname = "Sudan";
 let isActive = true;
 let personnn = { fistname: "Sudan", lastname: "Chapagain" };
 let colors = ["red", "green", "blue"];
-let sumfunc = function (a, b) { return a + b; };
+let sumfunc = function (a, b) {
+    return a + b;
+};
 let nothing = null;
 let notDefined;
 
@@ -78,20 +79,19 @@ if (nu % 2 === 0) {
 // logical operators & scope rules without braces
 let numb = prompt("Enter a number:");
 numb = parseInt(numb);
-if (numb >= 0 && numb <= 9)
-    alert("The given number is single digit");
-else if (numb >= 10 && numb <= 99)
-    alert("The given number is double digit");
+
+if (numb >= 0 && numb <= 9) alert("The given number is single digit");
+else if (numb >= 10 && numb <= 99) alert("The given number is double digit");
 else if (numb >= 100 && numb <= 999)
     alert("The given number is triple digit number");
-else
-    alert("The given number is multi digit number");
+else alert("The given number is multi digit number");
 
 // switch
 let numbe;
 let num1 = parseFloat(prompt("Enter first number"));
 let num2 = parseFloat(prompt("Enter second number"));
 let ops = prompt("Enter the operator (1 for +, 2 for -, 3 for *, 4 for /)");
+
 switch (ops) {
     case "1":
         numbe = num1 + num2;
@@ -116,9 +116,11 @@ switch (ops) {
 // for loops
 let number = parseInt(prompt("Enter a number:"));
 let result1 = "";
+
 for (let i = 1; i <= 10; i++) {
-    result1 += number + ' * ' + i + ' = ' + (number * i) + '\n';
+    result1 += number + " * " + i + " = " + number * i + "\n";
 }
+
 alert(result1);
 
 // breaking out of labeled loops
@@ -133,24 +135,29 @@ outer: for (var i = 0; i < 10; i++) {
 // while & do while
 let summ = 0;
 let addMore;
+
 do {
     let num = parseFloat(prompt("Enter a number:"));
     summ += num;
     addMore = confirm("Do you want to add another number?");
 } while (addMore);
+
 alert("The total sum of all entered numbers is: " + summ);
 
 // func declare
 function afunctiondeclaration(argument) {
     return "args: " + argument;
 }
+
 // func expression
 let funcexpn = function () {
     return 0;
-}
+};
 
 // anon func & arrow func
-const anonFunc = function () { return "Anon called!"; };
+const anonFunc = function () {
+    return "Anon called!";
+};
 const arrowFunc = () => "Arrow called!";
 console.log(anonFunc(), arrowFunc());
 
@@ -167,41 +174,56 @@ const xy = (function (n) {
 console.log(xy); // 4
 
 // func invoke
-function normalFunc() { return "called as function"; }
-const objj = { method() { return "called as method"; } };
-function ConstructorFunc() { this.msg = "called as constructor"; }
+function normalFunc() {
+    return "called as function";
+}
+const objj = {
+    method() {
+        return "called as method";
+    },
+};
+
+function ConstructorFunc() {
+    this.msg = "called as constructor";
+}
 const instance = new ConstructorFunc();
+
 console.log(normalFunc(), objj.method(), instance.msg);
 console.log(normalFunc.call(null), normalFunc.apply(null));
 
 // implicit invoke
-const implicitObj = { name: "Implicit", sayName() { return this.name; } };
+const implicitObj = {
+    name: "Implicit",
+    sayName() {
+        return this.name;
+    },
+};
 console.log(implicitObj.sayName());
 
 // a callback function, the function could be any name
 const callback = (n) => {
-    return n ** 2
-}
+    return n ** 2;
+};
 
 // function take other function as a callback
 function cube(callback, n) {
-    return callback(n) * n
+    return callback(n) * n;
 }
 
-console.log(cube(callback, 3))
+console.log(cube(callback, 3));
 
 // Higher order function returning an other function
-const higherOrder = n => {
-    const doSomething = m => {
-        const doWhatEver = t => {
-            return 2 * n + 3 * m + t
-        }
-        return doWhatEver
-    }
+const higherOrder = (n) => {
+    const doSomething = (m) => {
+        const doWhatEver = (t) => {
+            return 2 * n + 3 * m + t;
+        };
+        return doWhatEver;
+    };
 
-    return doSomething
-}
-console.log(higherOrder(2)(3)(10))
+    return doSomething;
+};
+console.log(higherOrder(2)(3)(10));
 
 // array literal
 let array1 = [1, 2, 3, 4, 5];
@@ -224,7 +246,7 @@ let array5 = Array.from("Hello");
 console.log("Array 5 (Array.from() from a string):", array5);
 
 // object to array with array from
-let arrayLike = { 0: 'a', 1: 'b', 2: 'c', length: 3 };
+let arrayLike = { 0: "a", 1: "b", 2: "c", length: 3 };
 let array6 = Array.from(arrayLike);
 console.log("Array 6 (Array.from() from an array-like object):", array6);
 
@@ -236,7 +258,7 @@ console.log("Array 7 (Spread Operator):", array7);
 let twoDArray = [
     [1, 2, 3],
     [4, 5, 6],
-    [7, 8, 9]
+    [7, 8, 9],
 ];
 
 console.log("Two-Dimensional Array:", twoDArray);
@@ -244,12 +266,12 @@ console.log("Two-Dimensional Array:", twoDArray);
 let threeDArray = [
     [
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
     ],
     [
         [7, 8, 9],
-        [10, 11, 12]
-    ]
+        [10, 11, 12],
+    ],
 ];
 
 console.log("Three-Dimensional Array:", threeDArray);
@@ -258,20 +280,19 @@ console.log("Element at [0][1][2]:", threeDArray[0][1][2]);
 // destructing Arrays
 const numbersoo = [1, 2, 3];
 let [numOne, numTwo, numThree] = numbersoo;
-console.log(numOne, numTwo, numThree)
+console.log(numOne, numTwo, numThree);
 
-const nameso = ['Sudan', 'Nepal', 'Russia', 'America']
+const nameso = ["Sudan", "Nepal", "Russia", "America"];
 let [firstPerson, secondPerson, thirdPerson, fourthPerson] = names;
-console.log(firstName, secondPerson, thirdPerson, fourthPerson)
+console.log(firstName, secondPerson, thirdPerson, fourthPerson);
 
 const scientificConstants = [2.72, 3.14, 9.81, 37, 100];
-let [e, pi, gravity, bodyTemp, boilingTemp] = scientificConstants
-console.log(e, pi, gravity, bodyTemp, boilingTemp)
+let [e, pi, gravity, bodyTemp, boilingTemp] = scientificConstants;
+console.log(e, pi, gravity, bodyTemp, boilingTemp);
 
 const numberso = [1, 2, 3];
 let [numOneo, , , numThreeo] = numbers;
-console.log(numOneo, numThreeo)
-
+console.log(numOneo, numThreeo);
 
 let [
     firstoPerson = "Asabeneh",
@@ -298,26 +319,24 @@ numberss.forEach((number, index) => {
     console.log(`Index: ${index}, Value: ${number}`);
 });
 
-const sumArray = arr => {
-    let sum = 0
+const sumArray = (arr) => {
+    let sum = 0;
     const callBack = function (element) {
-        sum += element
-    }
-    numberss.forEach(callback)
-    return sum
+        sum += element;
+    };
+    numberss.forEach(callback);
+    return sum;
+};
+console.log(sumArray(numberss));
 
-}
-console.log(sumArray(numberss))
-
-const sumArrays = arr => {
-    let sum = 0
+const sumArrays = (arr) => {
+    let sum = 0;
     numbers.forEach(function (element) {
-        sum += element
-    })
-    return sum
-
-}
-console.log(sumArrays(numbers))
+        sum += element;
+    });
+    return sum;
+};
+console.log(sumArrays(numbers));
 
 arr.forEach(function (element, index) {
     console.log(index, element);
@@ -338,7 +357,7 @@ const fruitss = ["Apple", "Banana", "Cherry"];
 const car = {
     make: "Toyota",
     model: "Corolla",
-    year: 2021
+    year: 2021,
 };
 
 // for of
@@ -361,26 +380,31 @@ fruits.splice(index, 1);
 let fruits = ["apple", "banana", "mango", "orange", "banana"];
 
 console.log("Includes 'mango'?", fruits.includes("mango")); // true : if exists
-console.log(fruits.find(f => f.startsWith("b"))); // "banana" : first match
-console.log(fruits.findIndex(f => f.startsWith("o"))); // 3 : first match index
+console.log(fruits.find((f) => f.startsWith("b"))); // "banana" : first match
+
+console.log(fruits.findIndex((f) => f.startsWith("o"))); // 3 : first match index
 console.log(fruits.indexOf("banana")); // 1 : first occurance
+
 console.log(fruits.lastIndexOf("banana")); // 4 : last ,,
 console.log(fruits.join(", ")); // "apple, banana, mango, orange, banana"
 console.log(fruits.concat(["pineapple", "grape"]));
 console.log(fruits.pop(), fruits);
+
 fruits.push("pear");
 console.log(fruits);
 console.log(fruits.reverse());
 console.log(fruits.shift(), fruits);
+
 fruits.unshift("strawberry");
 console.log(fruits);
 console.log(fruits.slice(1, 3)); // extract portion
-console.log(fruits.map(f => f.toUpperCase())); // transformation with iteration
+
+console.log(fruits.map((f) => f.toUpperCase())); // transformation with iteration
 console.log(fruits.sort());
-console.log(fruits.every(f => /^[aeiou]/i.test(f))); // false : test condition
+console.log(fruits.every((f) => /^[aeiou]/i.test(f))); // false : test condition
 
 const countriesContainingLand = countries.filter((country) =>
-    country.includes("land")
+    country.includes("land"),
 );
 console.log(countriesContainingLand);
 
@@ -388,7 +412,7 @@ const countriesEndByia = countries.filter((country) => country.includes("ia"));
 console.log(countriesEndByia);
 
 const countriesHaveFiveLetters = countries.filter(
-    (country) => country.length === 5
+    (country) => country.length === 5,
 );
 console.log(countriesHaveFiveLetters);
 
@@ -463,7 +487,7 @@ console.log(numbers); // [10, 25, 35, 40, 50]
 // Slice: returns a portion of an array without modifying it.
 const numbers = [10, 20, 30, 40, 50];
 console.log(numbers.slice(1, 3)); // [20, 30] (excludes index 3)
-console.log(numbers.slice(-2));   // [40, 50] (last two elements)
+console.log(numbers.slice(-2)); // [40, 50] (last two elements)
 
 // object sorting
 objArr.sort(function (a, b) {
@@ -488,7 +512,9 @@ console.log(users); // sorted ascending
 //[{…}, {…}, {…}, {…}]
 
 // pass by val proof
-function modify(x) { x = 10; }
+function modify(x) {
+    x = 10;
+}
 let ee = 5;
 modify(ee);
 console.log(ee);
@@ -533,7 +559,7 @@ const objLiteral = {
     age: 21,
     greet: function () {
         return `Hello, my name is ${this.name}`;
-    }
+    },
 };
 console.log(objLiteral.greet());
 
@@ -542,7 +568,7 @@ const objPrototype = {
     type: "Prototype Object",
     describe: function () {
         return `This is a ${this.type}`;
-    }
+    },
 };
 const objCreated = Object.create(objPrototype);
 objCreated.type = "Custom Object";
@@ -569,9 +595,9 @@ const complexObj = {
         return "This is a method inside an object";
     },
     nestedObj: {
-        key: "Nested Value"
+        key: "Nested Value",
     },
-    arr: [1, 2, 3]
+    arr: [1, 2, 3],
 };
 console.log(complexObj.method());
 console.log(complexObj.nestedObj.key);
@@ -587,7 +613,7 @@ const user = {
         if (value.length > 0) {
             this._name = value;
         }
-    }
+    },
 };
 console.log(user.name);
 user.name = "Sudan";
@@ -739,15 +765,12 @@ console.log(getPersonInfo(person));
 Asabeneh Yetayeh lives in Finland. He is  200 years old. He is an Instructor and Developer. He teaches HTML, CSS, JavaScript, React, Redux, Node, MongoDB, Python and D3.js. He speaks Amharic, English and a little bit of Suomi(Finnish)
 */
 
-
-
 /**
  * event handling in JavaScript
- * 
-*/
+ *
+ */
 
 // inline calling with onClick="" property
-
 
 // dom select + .onclick
 const traditionalButton = document.getElementById("traditional-btn");
@@ -790,32 +813,46 @@ if (form) {
     });
 }
 // window events
-["load", "unload", "resize"].forEach(event =>
-    window.addEventListener(event, () => console.log(`Window ${event.charAt(0).toUpperCase() + event.slice(1)}`))
+["load", "unload", "resize"].forEach((event) =>
+    window.addEventListener(event, () =>
+        console.log(`Window ${event.charAt(0).toUpperCase() + event.slice(1)}`),
+    ),
 );
 // input event
-document.getElementById("text-input")?.addEventListener("input", (e) => console.log("Input Event:", e.target.value));
+document
+    .getElementById("text-input")
+    ?.addEventListener("input", (e) =>
+        console.log("Input Event:", e.target.value),
+    );
 
 // window properties
-alert(`Inner: ${window.innerWidth}x${window.innerHeight}, Outer: ${window.outerWidth}x${window.outerHeight}`);
-let popup = window.open("https://www.example.com", "_blank", "width=400,height=300");
-if (popup) { popup.close(); }
-alert(`URL: ${location.href}\nHost: ${location.host}\nPath: ${location.pathname}\nProtocol: ${location.protocol}`);
+alert(
+    `Inner: ${window.innerWidth}x${window.innerHeight}, Outer: ${window.outerWidth}x${window.outerHeight}`,
+);
+let popup = window.open(
+    "https://www.example.com",
+    "_blank",
+    "width=400,height=300",
+);
+if (popup) {
+    popup.close();
+}
+alert(
+    `URL: ${location.href}\nHost: ${location.host}\nPath: ${location.pathname}\nProtocol: ${location.protocol}`,
+);
 console.log(`History Length: ${history.length}`);
-alert(`Browser: ${navigator.appName}\nVersion: ${navigator.appVersion}\nLanguage: ${navigator.language}\nOnline: ${navigator.onLine}`);
+alert(
+    `Browser: ${navigator.appName}\nVersion: ${navigator.appVersion}\nLanguage: ${navigator.language}\nOnline: ${navigator.onLine}`,
+);
 const frame = document.getElementById("myFrame");
 alert(`Frame Source: ${frame.src}`);
 
 // setTimeout runs the function once after the specified delay milliseconds.
-let timeoutID = setTimeout(() =>
-    alert("Timeout executed!"),
-    2000);
+let timeoutID = setTimeout(() => alert("Timeout executed!"), 2000);
 
 // setInterval repeatedly runs the function every delay milliseconds until
 // stopped with clearInterval().
-let intervalID = setInterval(() =>
-    console.log("Interval Running..."),
-    1000);
+let intervalID = setInterval(() => console.log("Interval Running..."), 1000);
 
 setTimeout(() => {
     clearInterval(intervalID);
@@ -825,14 +862,14 @@ setTimeout(() => {
 // radios with colors in values='' used to change bg-color
 document.addEventListener("DOMContentLoaded", function () {
     const radios = document.querySelectorAll("input[name='color']");
-    radios.forEach(radio => {
+    radios.forEach((radio) => {
         radio.addEventListener("change", function () {
             document.body.style.backgroundColor = this.value;
         });
     });
 });
 
-let paragraph = document.querySelectorAll("p")
+let paragraph = document.querySelectorAll("p");
 let properties = `
   nodeName: ${paragraph.nodeName} <br>
   nodeType: ${paragraph.nodeType} <br>
@@ -874,7 +911,6 @@ function sayHelloInFiveSeconds(name) {
 }
 sayHelloInFiveSeconds("Adam"); // will open a popup with "Hello, Adam!" in 5s
 
-
 // We can also specify a context for a function to execute in when we invoke it
 // using `call` or `apply`.
 var anotherFunc = function (s) {
@@ -899,7 +935,9 @@ var boundFunc = anotherFunc.bind(myObj);
 boundFunc(" And Hello Saturn!"); // = "Hello World! And Hello Saturn!"
 
 // `bind` can also be used to partially apply (curry) a function.
-var product = function (a, b) { return a * b; };
+var product = function (a, b) {
+    return a * b;
+};
 var doubler = product.bind(this, 2);
 doubler(8); // = 16
 
@@ -915,13 +953,13 @@ doubler(8); // = 16
 // property `__proto__`. While this is useful for explaining prototypes it's not
 // part of the standard; we'll get to standard ways of using prototypes later.
 var myObj = {
-    myString: "Hello world!"
+    myString: "Hello world!",
 };
 var myPrototype = {
     meaningOfLife: 42,
     myFunc: function () {
         return this.myString.toLowerCase();
-    }
+    },
 };
 
 myObj.__proto__ = myPrototype;
@@ -933,7 +971,7 @@ myObj.myFunc(); // = "hello world!"
 // Of course, if your property isn't on your prototype, the prototype's
 // prototype is searched, and so on.
 myPrototype.__proto__ = {
-    myBoolean: true
+    myBoolean: true,
 };
 myObj.myBoolean; // = true
 
@@ -981,7 +1019,7 @@ MyConstructor.prototype = {
     myNumber: 5,
     getMyNumber: function () {
         return this.myNumber;
-    }
+    },
 };
 var myNewObj2 = new MyConstructor();
 myNewObj2.getMyNumber(); // = 5
@@ -1019,7 +1057,8 @@ String.prototype.firstCharacter = function () {
 
 // For instance, we mentioned that Object.create isn't yet available in all
 // implementations, but we can still use it with this polyfill:
-if (Object.create === undefined) { // don't overwrite it if it exists
+if (Object.create === undefined) {
+    // don't overwrite it if it exists
     Object.create = function (proto) {
         // make a temporary constructor with the right prototype
         var Constructor = function () { };

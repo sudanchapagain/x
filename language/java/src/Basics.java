@@ -142,7 +142,7 @@ public class Basics {
         System.out.println("Bitwise Right Shift: " + (xArgument >> 2));
         System.out.println("Bitwise Unsigned Right Shift: " + (xArgument >>> 2));
 
-        // Control Flow
+        // control flow
         // if, if else, switch, for, while, do while, for each, break, continue,
         // return
         if ((xArgument & yArgument) != 0) {
@@ -158,6 +158,7 @@ public class Basics {
 
         char option = 'a';
         int x = 0, y = 0;
+
         switch (option) {
             case '+':
                 System.out.println("Addition=" + (x + y));
@@ -170,7 +171,7 @@ public class Basics {
                 break;
         }
 
-        // Array in Java
+        // array in java
         int[] numbers = {5, 2, 9, 1, 6};
         Arrays.sort(numbers);
         System.out.println("Sorted array: " + Arrays.toString(numbers));

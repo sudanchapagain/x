@@ -12,10 +12,10 @@ public class SwingExamples {
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        tabbedPane.addTab("Basic Controls", createBasicControlsPanel());
-        tabbedPane.addTab("Layouts", createLayoutsPanel());
-        tabbedPane.addTab("Event Handling", createEventHandlingPanel());
-        tabbedPane.addTab("Custom Painting", createCustomPaintingPanel());
+        tabbedPane.addTab("basic controls", createBasicControlsPanel());
+        tabbedPane.addTab("layouts", createLayoutsPanel());
+        tabbedPane.addTab("event handling", createEventHandlingPanel());
+        tabbedPane.addTab("custom painting", createCustomPaintingPanel());
 
         frame.add(tabbedPane);
         frame.setVisible(true);

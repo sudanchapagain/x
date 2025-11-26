@@ -1,6 +1,6 @@
 package src.inheritance;
 
-// Interface, Inheritance, Method Overriding
+// interface, inheritance, method overriding
 interface exampleInterfaceto {
     public void nothing();
 }
