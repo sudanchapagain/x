@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num1 = $_POST["num1"];
     $num2 = $_POST["num2"];
@@ -6,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bigger_num = max($num1, $num2);
 
     echo "<h3>Multiplication Table of $bigger_num</h3>";
+
     for ($i = 1; $i <= 10; $i++) {
         echo "$bigger_num x $i = " . $bigger_num * $i . "<br>";
     }
@@ -30,12 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         default:
             $result = "Invalid operator";
     }
+
     echo "<h3>Result: $result</h3>";
 }
 
 $indexed_array = [10, 20, 30, 40, 50];
-$associative_array = ["name" => "Sudan", "age" => 21, "city" => "Kathmandu"];
-$multi_array = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+$associative_array = [
+    "name" => "Sudan",
+    "age" => 21,
+    "city" => "Kathmandu"
+];
+
+$multi_array = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
 
 echo "<h3>indexed array</h3>";
 var_dump($indexed_array); echo "<br>";
@@ -67,35 +80,45 @@ array_push($array, 25, 30);
 array_shift($array);
 $found = array_search(15, $array);
 echo "Found 15 at index: $found<br>";
+
 array_unshift($array, 0);
 sort($array);
 echo "Sorted Array: ";
 print_r($array);
+
 echo "<br>";
+
 $assoc = ["b" => 3, "a" => 2, "c" => 1];
+
 asort($assoc);
 echo "sorted associative array (by value): ";
 print_r($assoc);
 echo "<br>";
+
 ksort($assoc);
 echo "sorted associative array (by key): ";
 print_r($assoc);
 echo "<br>";
+
 rsort($array);
 echo "reverse sorted array: ";
 print_r($array);
 echo "<br>";
+
 arsort($assoc);
 echo "associative array sorted by value in reverse: ";
 print_r($assoc);
 echo "<br>";
+
 krsort($assoc);
 echo "associative array sorted by key in reverse: ";
 print_r($assoc);
 echo "<br>";
+
 echo "current key-value pair: ";
 print_r(each($array));
 echo "<br>";
+
 echo "current element: " . current($array) . "<br>";
 reset($array);
 echo "first element: " . current($array) . "<br>";
@@ -104,12 +127,15 @@ echo "last element: " . current($array) . "<br>";
 next($array);
 echo "next element: " . current($array) . "<br>";
 echo "pos: " . pos($array) . "<br>";
+
 prev($array);
 echo "previous element: " . current($array) . "<br>";
+
 shuffle($array);
 echo "shuffled array: ";
 print_r($array);
 echo "<br>";
+
 $reversed = array_reverse($array);
 echo "reversed array: ";
 print_r($reversed);
@@ -131,6 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usernameErr = "Username is required.";
     } else {
         $username = $_POST["username"];
+
         if (strlen($username) < 8) {
             $usernameErr = "Username must be at least 8 characters.";
         } elseif (!preg_match("/^[a-zA-Z]/", $username)) {
@@ -142,6 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ageErr = "Age is required.";
     } else {
         $age = $_POST["age"];
+
         if ($age < 16) {
             $ageErr = "Age must be 16 or older.";
         }
@@ -151,6 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passwordErr = "Password is required.";
     } else {
         $password = $_POST["password"];
+
         if (strlen($password) < 8) {
             $passwordErr = "Password must be at least 8 characters.";
         }
@@ -160,6 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirmPasswordErr = "Confirm password is required.";
     } else {
         $confirmPassword = $_POST["confirmPassword"];
+
         if ($password !== $confirmPassword) {
             $confirmPasswordErr = "Passwords do not match.";
         }
@@ -180,16 +210,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
 $pattern = "/\d+/";
 $string = "There are 123 apples and 456 oranges.";
+
 if (preg_match($pattern, $string, $matches)) {
     echo "First match found: " . $matches[0] . "<br>";
 } else {
     echo "No match found.<br>";
 }
 
+
 $pattern = "/\d+/";
 $string = "123 456 789";
+
 if (preg_match_all($pattern, $string, $matches_all)) {
     echo "All matches found: ";
     print_r($matches_all[0]);
@@ -232,6 +266,7 @@ function greet($name = "Guest") {
 echo greet();
 echo "<br>";
 echo greet("Sudan");
+
 
 function sum_second_largest_smallest($arr) {
     sort($arr);
@@ -283,22 +318,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $remember = isset($_POST["remember"]);
 
     require "db_connection.php";
+
     $stmt = $conn->prepare(
         "SELECT * FROM users WHERE username = ? AND password = ?"
     );
+
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $result = $stmt->get_result();
+
     if ($result->num_rows > 0) {
         $_SESSION["username"] = $username;
+
         if ($remember) {
             setcookie("username", $username, time() + 86400 * 30, "/");
         }
         header("Location: ?");
+
         exit();
     } else {
         $error = "Invalid username or password!";
     }
+
     $stmt->close();
     $conn->close();
 }
@@ -332,6 +373,7 @@ if (mail($to, $subject, $message, $headers)) {
     echo "failed.";
 }
 
+
 class Student {
     private $name;
     private $age;
@@ -362,6 +404,7 @@ class Student {
     }
 }
 
+
 class Employee {
     private $name;
     private $salary;
@@ -384,11 +427,13 @@ class Employee {
     }
 }
 
+
 class Animal {
     public function sound() {
         echo "animal makes a sound.<br>";
     }
 }
+
 
 class Dog extends Animal {
     public function sound() {
@@ -396,11 +441,13 @@ class Dog extends Animal {
     }
 }
 
+
 class Bird extends Animal {
     public function sound() {
         echo "bird chirps.<br>";
     }
 }
+
 
 class Parrot extends Bird {
     public function sound() {
@@ -408,11 +455,13 @@ class Parrot extends Bird {
     }
 }
 
+
 class Cat extends Animal {
     public function sound() {
         echo "cat meows.<br>";
     }
 }
+
 
 class Person {
     public function __construct($name) {
@@ -420,12 +469,14 @@ class Person {
     }
 }
 
+
 class EmployeePerson extends Person {
     public function __construct($name, $salary) {
         parent::__construct($name);
         echo "salary: " . $salary . "<br>";
     }
 }
+
 
 class Counter {
     public static $count = 0;
@@ -439,11 +490,13 @@ class Counter {
     }
 }
 
+
 class ParentClass {
     public function greet() {
         echo "ello from parent class!<br>";
     }
 }
+
 
 class ChildClass extends ParentClass {
     public function greet() {
@@ -451,9 +504,11 @@ class ChildClass extends ParentClass {
     }
 }
 
+
 abstract class AnimalAbs {
     abstract public function sound();
 }
+
 
 class DogAbs extends AnimalAbs {
     public function sound() {
@@ -461,9 +516,11 @@ class DogAbs extends AnimalAbs {
     }
 }
 
+
 interface AnimalInterface {
     public function sound();
 }
+
 
 class DogInterface implements AnimalInterface {
     public function sound() {
@@ -471,11 +528,13 @@ class DogInterface implements AnimalInterface {
     }
 }
 
+
 class AnimalPolymorphism {
     public function sound() {
         echo "animal makes a sound.<br>";
     }
 }
+
 
 class DogPolymorphism extends AnimalPolymorphism {
     public function sound() {
@@ -483,19 +542,23 @@ class DogPolymorphism extends AnimalPolymorphism {
     }
 }
 
+
 class CatPolymorphism extends AnimalPolymorphism {
     public function sound() {
         echo "cat meows.<br>";
     }
 }
 
+
 interface AnimalMultiple {
     public function sound();
 }
 
+
 interface BirdMultiple {
     public function fly();
 }
+
 
 class Bat implements AnimalMultiple, BirdMultiple {
     public function sound() {
@@ -506,6 +569,7 @@ class Bat implements AnimalMultiple, BirdMultiple {
         echo "bat flies.<br>";
     }
 }
+
 
 echo "<p>class with member vars, constructor, and methods</p>";
 $student1 = new Student("me", 18, "A");
@@ -560,4 +624,5 @@ echo "<p>multiple inheritance with interface</p>";
 $bat = new Bat();
 $bat->sound();
 $bat->fly();
+
 ?>

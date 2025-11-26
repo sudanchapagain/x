@@ -2,29 +2,20 @@ import src.*;
 import src.inheritance.*;
 import src.inheritance.abstractClass.*;
 
+/*
+( JDK - Java Development Tools (JRE + Development Toools)
+  ( JRE - Java Runtime Environemnt (jvm + library class)
+    ( JVM - Java Virtual Machine   {JIT - just in time )))
+
+  - JDK: compiler (javac), archiver (jar), docs gen (javadoc), debuggers, monitoring tools
+  - JRE: UI toolkits (Swing, AWT, JavaFX), deployment tech (Java Web Start, applets),
+      integration libs (JDBC, RMI, CORBA), base libraries (java.*, javax.*)
+  - JVM: class loader subsystem, bytecode verifier, bytecode interpreter, jit compiler
+*/
+
+
 public class Main {
     public static void main(String[] args) {
-
-
-        // HISTORY
-
-
-
-        /*
-        { JDK - Java Development Tools (JRE + Development Toools)
-            { JRE - Java Runtime Environemnt (jvm + library class)
-                { JVM - Java Virtual Machine   {JIT - just in time }
-            }
-         }
-
-         - JDK: compiler (javac), archiver (jar), docs gen (javadoc), debuggers, monitoring tools
-
-         - JRE: UI toolkits (Swing, AWT, JavaFX), deployment tech (Java Web Start, applets),
-              integration libs (JDBC, RMI, CORBA), base libraries (java.*, javax.*)
-
-         - JVM: class loader subsystem, bytecode verifier, bytecode interpreter, jit compiler
-         */
-
         String str[] = {
                 "10",
                 "20"
@@ -33,29 +24,29 @@ public class Main {
         basic.basics(str);
         System.out.println("---------------------------------");
 
-        // Classes, Interface, Abstract class, inheritance, Method overriding
+        // classes, interface, abstract class, inheritance, method overriding
         ExampleAbstractClass eac = new ExampleAbstractClass();
         eac.something();
         ExampleInterface ei = new ExampleInterface();
         ei.nothing();
         System.out.println("---------------------------------");
 
-        // Constructors, Method overloading (Constructor Overloading implementation)
+        // constructors, method overloading (constructor overloading implementation)
         ConstClass constClass = new ConstClass();
         constClass.consto();
         System.out.println("---------------------------------");
 
-        // Exception Handling
+        // exception handling
         ExceptionHandle eh = new ExceptionHandle();
         eh.Exceptioner();
         System.out.println("--------------------------------");
 
-        // Collections
+        // collections
         Collect col = new Collect();
         col.collect();
         System.out.println("-------------------------------");
 
-        // Generics
+        // generics
         GenericClass<String> stringBox = new GenericClass<>("Hello");
         System.out.println("String Box Content: " + stringBox.getContent());
 

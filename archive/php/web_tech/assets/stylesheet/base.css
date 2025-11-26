@@ -1,0 +1,219 @@
+:root {
+  --max-screen: 1200px;
+  --primary-color: #dc2f2f;
+  --primary-color-dull: #b22424;
+  --primary-color-dark: #333;
+  --primary-color-dark-light: #555;
+  --secondary-color: #4b8aff;
+  --secondary-color-dull: #4479db;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Liberation sans, Inter, Helvetica, Ariel, sans-serif;
+}
+
+.page {
+  max-width: var(--max-screen);
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 100px;
+}
+
+nav > div > span {
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+.navlinks > ul {
+  display: flex;
+  list-style: none;
+}
+
+.navlinks > ul > li {
+  padding: 0.5rem 1rem;
+}
+
+.navlinks > ul > li:hover {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.navlinks > ul > li > a {
+  text-decoration: none;
+  color: #000;
+}
+
+.navlinks > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+.navlinks > ul > li > a:visited {
+  color: #000;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px #00000033;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  text-decoration: underline;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.btnMain {
+  background-color: var(--secondary-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.btnMain:hover {
+  background-color: var(--secondary-color-dull);
+}
+
+.btnSide {
+  background-color: #fff;
+  border: 1px solid var(--secondary-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.btnSide:hover {
+  background-color: #e8e8e8;
+}
+
+svg {
+  display: none;
+}
+
+hr {
+  border: 1px solid #aaa;
+}
+
+h1 {
+  font-size: 4rem;
+  color: var(--primary-color-dark);
+  padding-top: 1rem;
+  letter-spacing: -0.5px;
+}
+
+p {
+  line-height: 1.6;
+  letter-spacing: -0.16px;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color-dark-light);
+}
+
+footer {
+  background-color: #111;
+  color: #fff;
+}
+
+.footer-main {
+  max-width: var(--max-screen);
+  margin: 4rem auto 0 auto;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+h4 {
+  margin-bottom: 1rem;
+}
+
+.footer-main > div > ul > li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+.footer-main > div > ul > li > a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.footer-main > div > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+.footer-main > div > p > a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-main > div > p > a:hover {
+  text-decoration: underline;
+}
+
+.footer-extended {
+  background-color: #000;
+  color: #fff;
+}
+
+.footer-extended > p {
+  margin: 0;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+@media screen and (max-width: 1000px) {
+  nav > div > span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .navlinks,
+  .btnMain,
+  .btnSide {
+    display: none;
+  }
+
+  svg {
+    display: inline;
+    margin-left: 2rem;
+  }
+}
