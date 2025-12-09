@@ -1,0 +1,44 @@
+---
+title: JavaScript
+desc:
+date: 2024-08-12
+status: false
+---
+
+# How JavaScript works
+
+_"Everything in javascript happens inside an *execution context*."_
+
+Execution context is just the environment (state, variable bindings, scope,
+call stack, etc.) in which computer instructions is executed. Every language
+has it. But, ECMA-262 formalizes the concept of execution context because
+ECMAScript is highly dynamic (i.e. variables can be defined anywhere, use
+`eval`, change `this`), etc. as such explaing things without this abstract
+"execution context" becomes a challenge.
+
+_For a proper look into the subject matter see section 9 (9.4 specifically) of
+ECMAScript standard (accessed: 15th 2024 june edition)_
+
+So, What is execution context in ECMAScript? Execution context is the abstract
+concept used by ECMA-262 specification to track the runtime evaluation of code
+by an ECMAScript implementation. These sets of execution contexts form a stack
+of which at the bottom is global context and the top most is current active
+execution context.
+
+Execution contexts are created when the js engine starts running a script. It
+first creates a _global execution context_, which sets up the global scope
+and prepares the environment for code to run. As functions are invoked, new
+execution contexts are created and pushed on the stack (_call stack_) that
+keeps track of the order in which these contexts are entered and exited.
+
+## The machine has to remember
+
+
+
+In execution context the _variable environment_ and _lexical environment_ are
+tracked. But first it has to be created as such the first step is _declaration
+binding instantiation_ which by its name is clear. Variables, Functions, all
+that can be declared to be binded is instantiated with the value of
+`undefined`.
+
+JS is synchronous single-threaded
