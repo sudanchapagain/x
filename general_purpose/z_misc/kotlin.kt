@@ -3,6 +3,8 @@
 //    Do look at this too: <https://kotlinlang.org/docs/idioms.html>
 /*****************************************************************************/
 
+// NOTE: this file cannot be compiled.
+
 fun main(args: Array<String>) {
     // val is immuteable, var is muteable
     val x: Int = 2
@@ -18,11 +20,11 @@ fun main(args: Array<String>) {
     val ageVar: Int = userInput?.toIntOrNull() ?: 0
     println("Your name is $nameVar and your age is $ageVar")
 
-    // Strings are immutable. the length and elements cannot be changed after their creation.
+    // Strings are immutable.
+    // the length and elements cannot be changed after their creation.
 
-    // A String can be simply declared within double quote (" ") which is escaped string or triple
-    // quote(""" """) which is raw string.
-
+    // A String can be simply declared within double quote (" ") which is
+    // escaped string or triple quote(""" """) which is raw string.
     // list of escape characters supported in Kotlin:
     // \t - Inserts tab
     // \b - Inserts backspace
@@ -39,8 +41,8 @@ fun main(args: Array<String>) {
     // Properties of String
 
     // length: Int -> It returns the length of string sequence.
-    // indices: IntRange ->	It returns the ranges of valid character indices from current char
-    // sequence.
+    // indices: IntRange -> It returns the ranges of valid character indices
+    //          from current char sequence.
     // lastIndex: Int -> It returns the index of last character from char sequence.
 
     var testingStr = "Kotlin"
@@ -52,10 +54,10 @@ fun main(args: Array<String>) {
     // structural equality (==) and  // It's work on value
     // referential equality (===).   // It's work on address
 
-    // * In structural equality two objects have separate instances in memory but contain same
-    // value.
-    // * Referential equality specifies that two different references point the same instance in
-    // memory.
+    // * In structural equality two objects have separate instances in memory
+    //   but contain same value.
+    // * Referential equality specifies that two different references point
+    //   the same instance in memory.
 
     // Structural equality (==)
     val strr1 = "Hello, World!"
@@ -87,49 +89,59 @@ fun main(args: Array<String>) {
     val caster = nuller as String
     println(caster)
 
-    // ## String Functions
+    // STRING FUNCTIONS
 
-    // compareTo(other: String): Int	// It returns zero if current is equals to specified other
-    // object.
+    // compareTo(other: String): Int
+    // It returns zero if current is equals to specified other object.
     val tester: String = "Alfred"
     println(tester.compareTo("Alfred"))
     println(tester.compareTo("Alfred"))
 
-    // plus(other: Any?): String     // It returns the concatenate string with the string
-    // representation of the given other string
+    // plus(other: Any?): String
+    // It returns the concatenate string with the string representation of the
+    // given other string
     println(tester.plus(" Henk"))
 
-    // subSequence(startIndex: Int,endIndex: Int): CharSequence      // It returns the new character
-    // sequence from current character sequence, from startIndex to endIndex.
+    // subSequence(startIndex: Int,endIndex: Int): CharSequence
+    // It returns the new character sequence from current character sequence,
+    // from startIndex to endIndex.
     println(tester.subSequence(2, 4))
 
-    // CharSequence.contains(other: CharSequence):Boolean      // It returns true if the character
-    // sequence contains the other specified character sequence.
+    // CharSequence.contains(other: CharSequence):Boolean
+    // It returns true if the character sequence contains the other specified
+    // character sequence.
     println(tester.contains("ema")) // true
     println(tester.contains("Ema", true)) // true
     println(tester.contains("Ema", false)) // false
 
-    // CharSequence.count(): Int       // It returns the length of char sequence.
+    // CharSequence.count(): Int
+    // It returns the length of char sequence.
     println(tester.length)
 
-    // String.drop(n: Int): String      // It returns a string after removing the first n character.
+    // String.drop(n: Int): String
+    // It returns a string after removing the first n character.
     println(tester.drop(3))
 
-    // String.dropLast(n: Int): String   // It returns a string after removing the last n character.
+    // String.dropLast(n: Int): String
+    // It returns a string after removing the last n character.
     println(tester.dropLast(2))
 
-    // CharSequence.elementAt(index: Int): Char        // It returns a character at the given index
-    // or throws an IndexOutOfBoundsException if the index does not exist in character sequence.
+    // CharSequence.elementAt(index: Int): Char
+    // It returns a character at the given index or throws an
+    // IndexOutOfBoundsException if the index does not exist in character
+    // sequence.
     println(tester.elementAt(2))
 
-    // CharSequence.indexOf(char: Char ): Int   //  It returns the index of first occurrence of the
-    // given character, starting from the given index value otherwise return -1.
+    // CharSequence.indexOf(char: Char ): Int
+    // It returns the index of first occurrence of the given character,
+    // starting from the given index value otherwise return -1.
     println(tester.indexOf("man")) //  2 -> H e man t
     println(tester.indexOf("nam")) // -1
     println(tester.indexOf("MaN", ignoreCase = true)) // 2
 
-    // CharSequence.trimMargin() : String      // Leading whitespace can be removed with
-    // trimMargin() function. By default, trimMargin() function uses | as margin prefix.
+    // CharSequence.trimMargin() : String
+    // Leading whitespace can be removed with trimMargin() function. By
+    // default, trimMargin() function uses | as margin prefix.
     val text =
             """Kotlin is official language
     ^            announce by Google for
@@ -138,27 +150,32 @@ fun main(args: Array<String>) {
     println(text)
     println(text.trimMargin("^"))
 
-    // String template
-    // ** String templates starts with a dollar sign $ which consists either a variable name or
-    // an arbitrary expression in curly braces.
-
+    // STRING TEMPLATE
+    // ---------------
+    // String templates starts with a dollar sign $ which consists either a
+    // variable name or an arbitrary expression in curly braces.
     val testVal = "Olly"
-
     // String template as variable name
     println("Hello! my name is $testVal")
-
     // String template as arbitrary expression in curly braces
     println("Hello! my full name is ${testVal.plus(" and Oggy")}")
 
+    // TYPES:
+    // ------
     // Byte, Short, String, Int, Long, Float, String, Char, Bool exit
-    // ---------------------------------------------------------
+
+    // INITIALIZATION/DECLARATION
+    // --------------------------
     // const is calculated at compile time
     // anything that cannot be compiled at compile time cannot be const
     // convention for const val is UPPERCASE
     // const val COMPILE: Int = 555
-    // ---------------------------------------------------------
-    // +, -, /, *, %, >, <, <=, >=, ==, !=, +=, -=, *=, /=, %=, &&, ||, !(not). Operators exist.
-    // and, or keywords exist but they do not short circuit
+
+    // OPERATORS
+    // ---------
+    // +, -, /, *, %, >, <, <=, >=, ==, !=, +=, -=, *=, /=, %=, &&, ||, !.
+    // above mentioned operators exist.
+    // `and`, `or` keywords also exists but they do not short circuit
 
     // TYPE CONVERSION
     // Every conversion is explicit where smaller data type is converted into larger data type and
@@ -227,18 +244,17 @@ fun main(args: Array<String>) {
         }
     }
 
-    val res =
-            when (media) {
-                in 12..20 -> {
-                    "yes"
-                }
-                in 7..12 -> {
-                    "may"
-                }
-                else -> {
-                    "no"
-                }
-            }
+    val res = when (media) {
+        in 12..20 -> {
+            "yes"
+        }
+        in 7..12 -> {
+            "may"
+        }
+        else -> {
+            "no"
+        }
+    }
     println(res)
 
     /*
@@ -372,21 +388,28 @@ fun main(args: Array<String>) {
         println(num)
     }
 
-    // FUNCTIONS
-    /*
+    /* FUNCTIONS
+    ------------
+
     fun functionName(){ }
     fun functionPara(parameter: Type){ }
     fun FunctionPara(parameter: Type): returnType{ }
     fun shorthandSingle-expressionFunctions(parameter: Type) = x*x
     fun defaultValuePara(parameter: Type = defaultValue){ }
 
-    ---------------------------------------
 
-    Function calling
+
+    Function calling:
+    -----------------
+
     functionName()
     functionPara(something)
 
-    HIGH ORDER FUNCTION
+
+
+    HIGHER ORDER FUNCTION:
+    ----------------------
+
     Function which accepts function as parameter or returns a function or both.
 
     // Lambda is a function which has no name. (anonymous function)
@@ -394,7 +417,7 @@ fun main(args: Array<String>) {
     // The body of function is written after variable (if any) followed by -> operator.
 
     // Syntax of Lambda
-    // { variable -> body_of_function}
+    // { variable -> body_of_function }
 
     // lambda function for Print with pattern design
     val myLambdaPrinter = { num: Int -> println("<--$num-->") }
@@ -418,7 +441,10 @@ fun main(args: Array<String>) {
     printSum(4, 7, myLambdaPrinter)
     */
 
-    // Null safety
+
+
+    // NULL SAFETY
+    // -----------
     // declares name as nullable string
     var name: String? = "someone"
     name = null // assigned null
@@ -432,18 +458,16 @@ fun main(args: Array<String>) {
 
     // variable can hold nulls
     var countries: List<String?> =
-            listOf("Sunland", "Waterland", null, "Fireland", null, "Airland", null, "Spaceland")
+        listOf("Sunland", "Waterland", null, "Fireland", null, "Airland", null, "Spaceland")
 
     // ? is safe call operator, prints only non-nulls
     // someThing-.otherThing does not throw an NPE if someThing is null.
     // Safe calls are useful in chains. For example, an employee may be assigned to a department (or
     // not). That department may in turn have another employee as a department head, who may or may
     // not have a name, which we want to print:
-    /*
     fun printDepartmentHead(employee: Employee) {
         println(employee.department?.head?.name)
     }
-    */
 
     // To print only for non-null values, you can use the safe call operator together with let:
     // employee.department?.head?.name?.let { println(it) }
@@ -451,7 +475,6 @@ fun main(args: Array<String>) {
         country?.let { println(it) }
     }
 
-    /*
     fun funny(text: String?) {
         if (text -= null){
             println(text)
@@ -464,13 +487,12 @@ fun main(args: Array<String>) {
         val toPrint = text -: "Nothing to print :("
         println(toPrint)
     }
-    */
 
     // var stre1: String? = "Hello"
     // println(stre1.length) // compile error
 
     // if (str1 != null) { // -> smart cast
-    // println(str1.length) // -> It works now!
+    //     println(str1.length) // -> It works now!
     // }
 
     // While using is or !is for checking the variable,
@@ -491,7 +513,10 @@ fun main(args: Array<String>) {
         println(stra2.length)
     }
 
-    // Unsafe and Safe cast operator
+
+
+    // UNSAFE AND SAFE CAST OPERATOR:
+    // ------------------------------
     // Sometime it is not possible to cast variable and it throws an exception, this is called as
     // unsafe cast.
 
@@ -499,14 +524,14 @@ fun main(args: Array<String>) {
 
     // A nullable string (String?) cannot be cast to non nullabe string (String), this throw an
     // exception.
-    // val str: String? = null
-    // val str1: String = str as String
+    val str: String? = null
+    val str1: String = str as String
     // Error : kotlin.TypeCastException: null cannot be cast to non-null type kotlin.String
 
     // While try to cast integer value of Any type into string type lead to generate a
     // ClassCastException.
-    // val num: Int = 123
-    // val str2: String = num as String
+    val num: Int = 123
+    val str2: String = num as String
     // Throws java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String
 
     // Kotlin provides a safe cast operator as? for safely cast to a type.
@@ -514,24 +539,28 @@ fun main(args: Array<String>) {
     // exception.
 
     // Examples
+    val num1: Int = 123
+    val strs3 = num1 as? String
+    println(strs3) // null
 
-    // val num1: Int = 123
-    // val strs3 = num1 as? String
-    // println(strs3) // null
+
 
     // Elvis operator -:
+    // -----------------
     // If the expression to the left of -: is not null, the Elvis operator
     // returns it; otherwise, it returns the expression to the right.
 
     // the expression on the right-hand side is evaluated only if
     // the left-hand side is null.
-    /*
     fun loadInfoById(id: String): String? {
         val item = findItem(id) -: return null
         return item.loadInfo() -: throw Exception("...")
-    */
+    }
 
-    // Unsafe Calls
+
+
+    // UNSAFE CALLS
+    // ------------
     // The not-null assertion operator (!!) converts any value to a non-null type and throws an NPE
     // exception if the value is null.
     /*
@@ -661,7 +690,7 @@ class Collection() {
         // sets are collections of unique elements
         // maps are key-value pairs
 
-        // # Immutable
+        // Immutable
         // ----------------------------------------------
 
         // List ->  listOf() , listOf<T>()
@@ -692,7 +721,7 @@ class Collection() {
 
         // Set -> setOf()
 
-        // # Mutable
+        // Mutable
         // ----------------------------------------------
 
         // List	->  ArrayList<T>() , arrayListOf() , mutableListOf()
@@ -712,8 +741,8 @@ class OOP() {
         // protected – Accessible inside the class and its inheritors
         // internal – Accessible in the module
 
-        // CLASS
-        /*___________________________________________________________
+        // CLASS:
+        // ------
         // class with properties containing default values
         class Student {
           var name = "Lucia"
@@ -741,10 +770,11 @@ class OOP() {
             println(student.gpa)
             // Prints: 3.95
         }
-        */
+
+
 
         // CONSTRUCTOR
-        /*___________________________________________________________
+        // -----------
         class Student(val name: String, val gps: Double)
 
         fun main(){
@@ -752,11 +782,11 @@ class OOP() {
             println(student.name) // So
             println(student.gpa) // 3.1
         }
-        */
+
+
 
         // INIT BLOCK
-        /*___________________________________________________________
-        init block executes when the class is instantiated.
+        // init block executes when the class is instantiated.
 
         class Student(val name: String, val gpa: Double) {
             init {
@@ -767,16 +797,15 @@ class OOP() {
         fun main() {
             var student = Student("So", 3.1) // Student So has a GPA of 3.1
         }
-        */
+
+
 
         // OPEN CLASS
-        /*___________________________________________________________*/
         // An open class is a class that is allowed to be subclassed.
         // By default, classes in Kotlin are final, meaning they cannot be inherited from.
         // If you want to create a class that other classes can inherit from,
         // you need to mark it as open.
 
-        /*
         open class Animal {
             open fun sound() {
                 println("Animal makes a sound")
@@ -788,7 +817,6 @@ class OOP() {
                 println("Dog barks")
             }
         }
-        */
 
         // Explanation:
         // Point class' primary constructor takes two parameters x and y.
@@ -801,23 +829,22 @@ class OOP() {
         // indirectly through the first secondary constructor, assuming the Circle
         // class has a property centre of type Point.
 
-        // class Circle(val centre: Point)
+        class Circle(val centre: Point)
 
         // Constructor delegation ensures that the correct constructor
         // is called based on the type of the argument provided.
 
-        // open class Point(val x: Int, val y: Int) {
-        //      constructor(other: Point) : this(other.x, other.y) { //. }
-        //      constructor(circle: Circle) : this(circle.centre) { //. }
-        // }
+        open class Point(val x: Int, val y: Int) {
+             constructor(other: Point) : this(other.x, other.y) { /**/ }
+             constructor(circle: Circle) : this(circle.centre) { /**/ }
+        }
 
         // Abstraction vs Encapsulation
         // Abstraction is about what others see and how they interact with an object.
         // Encapsulation is about how an object operates internally and how it responds to messages.
 
         // ABSTRACTION (INTERFACE & ABSTRACT CLASS)
-        /*___________________________________________________________
-        // Interfaces cannot have a state. They can only have abstract properties and functions.*/
+        // Interfaces cannot have a state. They can only have abstract properties and functions.
         interface RegularCat {
             fun pet()
             fun feed(food: Food)
@@ -843,7 +870,6 @@ class OOP() {
         }
 
         // INHERITANCE
-        /*___________________________________________________________
         // Inheritance is the process of creating a new class from an existing class.
         // The new class is called a subclass, and the existing class is called a superclass.
         // you can inherit only from one class, and from as many interfaces as you like.
@@ -851,15 +877,14 @@ class OOP() {
         class SickDomesticCat : RegularCat(), CatAtHospital {
             override var isHungry: Boolean = false
             get() = field
-            set(value) {//.}
-            override fun pet() {//.}
-            override fun feed(food: Food) {//.}
-            override fun checkStomach() {//.}
+            set(value) { /**/ }
+            override fun pet() { /**/ }
+            override fun feed(food: Food) { /**/ }
+            override fun checkStomach() { /**/ }
             override fun giveMedicine(pill: Pill)
             {//.}
         }
 
-        */
         // WHY DO YOU PREVENT A CAT FROM POOPING?
         abstract class Cat {
 
@@ -1090,21 +1115,3 @@ class OOP() {
         }
     }
 }
-
-
-/*
-
-TODO:
-
-- generics
-- inheritance
-- enum
-- data classes
-- sealed classes
-- object
-- higher order functions
-- lambdas
-- extension functions
-- let, run, with, apply, also
-- delegation pattern, delegated properties
-*/
