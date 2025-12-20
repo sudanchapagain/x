@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 /*
 
     since C requires that when a function is called it's type to be known ahead, using functions then defining
@@ -292,10 +291,6 @@ void header(void) {
         path of libraries) to the compiler driver who would then handle it for us.
 
         --WIP-MARKER
-        to do that in clang we can 
-
-        
-
 
     */
 
