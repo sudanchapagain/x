@@ -1,1 +1,0 @@
-option('project_id', type: 'string', value: '', description: 'Project ID to build (e.g., 01)')
