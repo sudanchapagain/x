@@ -11,7 +11,7 @@ int fib(int n) {
 int main(void) {
     int n;
     printf("enter the term upto: ");
-    scanf("%d", n);
+    scanf("%d", &n);
     printf("\nfibonacci series: ");
     for (int i = 1; i <= n; i++) {
         printf("%d, ", fib(i));

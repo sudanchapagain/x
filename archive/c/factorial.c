@@ -11,7 +11,7 @@ int fact(int n) {
 int main(void) {
     int n;
     printf("enter a number: ");
-    scanf("%d", n);
+    scanf("%d", &n);
 
     printf("\nfactorial of a number is %d", fact(n));
 }

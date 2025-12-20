@@ -60,7 +60,7 @@ int main(void) {
     // puts quite literally puts string in the console
     puts("show things at the console");
     // printf allows for formatted strings.
-    printf("%s", num_is_null);
+    printf("%s", "hello");
     printf("program in C!\n");
     printf("printing ints %d\n", num1);
     printf("printing floats %f\n", num2);
@@ -171,11 +171,11 @@ int main(void) {
 
     // we can do arithmetic operations over numbers
     printf("%d\n", 1 + 2);
-    printf("%f\n", 1 + 2 - 3 * 4 / 5 % 6); // the order of operations is left to right multiplication, division,
+    printf("%d\n", 1 + 2 - 3 * 4 / 5 % 6); // the order of operations is left to right multiplication, division,
                                            // & remainder, then addition, subtraction.
 
     // we can order the operations with () as it has higher precedence
-    printf("%f\n", ((((1 + 2) - 3) * 4) / 5) % 6);
+    printf("%d\n", ((((1 + 2) - 3) * 4) / 5) % 6);
     /*
 
     Source: <https://en.cppreference.com/w/c/language/operator_precedence.html>

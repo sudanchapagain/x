@@ -135,7 +135,7 @@ int returner(void) {
     int a = 0;
 
     printf("return value: ");
-    scanf("%d", a);
+    scanf("%d", &a);
 
     return a;
 }
