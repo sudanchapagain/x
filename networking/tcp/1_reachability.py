@@ -8,4 +8,5 @@ def tcp_reachable(host, port, timeout=2):
     except OSError:
         return False
 
+
 print(tcp_reachable("sudanchapagain.com.np", 80))
