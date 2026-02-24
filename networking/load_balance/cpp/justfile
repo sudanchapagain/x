@@ -1,0 +1,18 @@
+default:
+    mkdir -p build
+    cd build && cmake .. && make -j
+
+run-lb:
+    ./build/load_balancer
+
+run-b1:
+    ./build/backend_server --port 8081
+
+run-b2:
+    ./build/backend_server --port 8082
+
+run-b3:
+    ./build/backend_server --port 8083
+
+clean:
+    rm -rf build
