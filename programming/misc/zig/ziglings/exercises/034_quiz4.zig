@@ -1,10 +1,3 @@
-//
-// Quiz time. See if you can make this program work!
-//
-// Solve this any way you like, just be sure the output is:
-//
-//     my_num=42
-//
 const std = @import("std");
 
 const NumError = error{IllegalNumber};

@@ -1,14 +1,3 @@
-//
-// What's really nice is that you can use a switch statement as an
-// expression to return a value.
-//
-//     const a = switch (x) {
-//         1 => 9,
-//         2 => 16,
-//         3 => 7,
-//         ...
-//     }
-//
 const std = @import("std");
 
 pub fn main() void {
@@ -29,14 +18,10 @@ pub fn main() void {
             // ...
             25 => 'Y',
             26 => 'Z',
-            // As in the last exercise, please add the 'else' clause
-            // and this time, have it return an exclamation mark '!'.
             else => '!',
         };
 
         std.debug.print("{c}", .{real_char});
-        // Note: "{c}" forces print() to display the value as a character.
-        // Can you guess what happens if you remove the "c"? Try it!
     }
 
     std.debug.print("\n", .{});

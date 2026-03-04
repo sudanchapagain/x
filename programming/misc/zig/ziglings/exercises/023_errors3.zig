@@ -1,11 +1,3 @@
-//
-// One way to deal with error unions is to "catch" any error and
-// replace it with a default value.
-//
-//     foo = canFail() catch 6;
-//
-// If canFail() fails, foo will equal 6.
-//
 const std = @import("std");
 
 const MyNumberError = error{TooSmall};

@@ -1,10 +1,3 @@
-//
-// Let's see if we can make use of some of the things we've learned so far.
-// We'll create two functions: one that contains a "for" loop and one
-// that contains a "while" loop.
-//
-// Both of these are simply labeled "loop" below.
-//
 const std = @import("std");
 
 pub fn main() void {
@@ -14,13 +7,6 @@ pub fn main() void {
     std.debug.print("\n", .{});
 }
 
-// You won't see this every day: a function that takes an array with
-// exactly four u16 numbers. This is not how you would normally pass
-// an array to a function. We'll learn about slices and pointers in
-// a little while. For now, we're using what we know.
-//
-// This function prints, but does not return anything.
-//
 fn printPowersOfTwo(numbers: [4]u16) void {
     for (numbers) |n| {
         std.debug.print("{} ", .{twoToThe(n)});
