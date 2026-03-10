@@ -2694,3 +2694,648 @@ s2.add_skill("Marketing")
 s2.add_skill("Digital Marketing")
 print(s2.skills)
 
+import threading
+import time
+
+# Daemon Threads and Events in Threading
+
+# **Daemon Threads**:
+# - A daemon thread is a thread that runs in the background and does not prevent the program from exiting.
+# - When the main program exits, daemon threads are abruptly stopped.
+# - Useful for background tasks that should not block program termination.
+
+# **Events**:
+# - An Event is a synchronization primitive that allows threads to communicate with each other.
+# - A thread can wait for an event to be set, and other threads can trigger the event by setting it.
+# - Useful for coordinating tasks between threads.
+
+# Example 1: Using Events
+event = threading.Event()
+
+def myFunction():
+    """
+    Function that waits for an event to be triggered before performing an action.
+    """
+    print("Waiting for event to trigger...")
+    event.wait()  # Wait until the event is set
+    print("Performing action XYZ now...")
+
+# Create and start a thread that will wait for the event
+t1 = threading.Thread(target=myFunction)
+t1.start()
+
+x = input("Do you want to trigger the event? (y/n)")
+
+if x == "y":
+    event.set()  # Trigger the event, allowing the waiting thread to proceed
+
+# Example 2: Daemon Threads
+path = "text.txt"
+text = ""
+
+def readFile():
+    """
+    Continuously reads the contents of a file and updates the global `text` variable.
+    """
+    global path, text
+    while True:
+        with open(path, "r") as f:
+            text = f.read()
+        time.sleep(3)  # Wait for 3 seconds before reading the file again
+
+def printloop():
+    """
+    Continuously prints the current value of the `text` variable.
+    """
+    for x in range(30):
+        print(text)
+        time.sleep(1)  # Wait for 1 second before printing again
+
+# Create and start a daemon thread for reading the file
+t1 = threading.Thread(target=readFile, daemon=True)
+t1.start()
+
+# Create and start a non-daemon thread for printing the text
+t2 = threading.Thread(target=printloop)
+t2.start()
+
+######################################
+
+
+"""
+Database programming in Python involves using Python to interact with databases.
+This typically includes performing operations like querying, updating, and managing
+data stored in a database. Python provides various libraries and modules to work
+with different types of databases.
+
+# Corresponding Python Libraries for different DBMS
+SQLite: sqlite3
+MySQL: mysql-connector-python
+PostgreSQL: psycopg2
+MongoDB: pymongo
+"""
+
+import sqlite3
+
+class Person:
+    
+    def __init__(self, id_number=-1, first="", last="", age=-1):
+        """
+        Initializes a new Person instance and connects to the SQLite database.
+        
+        Parameters:
+        id_number (int): Unique ID for the person.
+        first (str): First name of the person.
+        last (str): Last name of the person.
+        age (int): Age of the person.
+        """
+        self.id_number = id_number
+        self.first = first
+        self.last = last
+        self.age = age
+        # Connect to the SQLite database file
+        self.connection = sqlite3.connect('mydata.db')
+        self.cursor = self.connection.cursor()
+
+    def load_person(self, id_number):
+        """
+        Loads and updates the Person object with data from the database.
+        
+        Parameters:
+        id_number (int): ID of the person to retrieve.
+        """
+        # Select person data using their ID
+        self.cursor.execute("SELECT * FROM persons WHERE id = ?", (id_number,))
+        results = self.cursor.fetchone()
+        
+        # Update object attributes with the retrieved data
+        if results:
+            self.id_number = id_number
+            self.first = results[1]
+            self.last = results[2]
+            self.age = results[3]
+
+    def insert_person(self):
+        """
+        Inserts the current Person instance into the database.
+        """
+        # Insert person data into the 'persons' table
+        self.cursor.execute("INSERT INTO persons VALUES (?, ?, ?, ?)",
+                            (self.id_number, self.first, self.last, self.age))
+        self.connection.commit()  # Commit the transaction
+        self.connection.close()   # Close the connection
+
+# Example usage:
+
+# Create a new Person instance and insert into the database
+p1 = Person(7, "Alex", "Robins", 30)
+p1.insert_person()
+
+# Fetch and print all records from the 'persons' table
+connection = sqlite3.connect('mydata.db')
+cursor = connection.cursor()
+cursor.execute("SELECT * FROM persons")
+results = cursor.fetchall()
+print(results)
+connection.close()
+
+"""
+Notes:
+1. **SQLite**: A lightweight, file-based database system used here for simplicity.
+2. **Database Connection**: Use `sqlite3.connect('filename.db')` to connect.
+3. **Cursor**: Allows SQL commands to be executed (`cursor.execute()`).
+4. **Parameterized Queries**: Use placeholders (`?`) to prevent SQL injection and handle data safely.
+5. **Commit and Close**: Always commit changes with `connection.commit()` and close the connection with `connection.close()`.
+"""
+
+############################################################################
+
+"""
+Introduction:
+This file demonstrates the use of property decorators in Python to manage 
+attribute access and manipulation in a class. Decorators provide a 
+convenient way to define methods that act like attributes, allowing for 
+controlled access to class data.
+"""
+
+class Employee:
+
+    # Class variable for raise amount, which can be used to calculate salary raises.
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        """
+        Initialize an Employee object with first name, last name, and pay.
+        
+        :param first: First name of the employee.
+        :param last: Last name of the employee.
+        :param pay: Salary of the employee.
+        """
+        self.first = first
+        self.last = last
+        self.pay = pay
+
+    @property
+    def email(self):
+        """
+        Property to get the email address of the employee.
+        
+        :return: The email address formatted as 'first.last@email.com'.
+        """
+        return '{}.{}@email.com'.format(self.first, self.last)
+    
+    @property
+    def fullname(self):
+        """
+        Property to get the full name of the employee.
+        
+        :return: The full name formatted as 'first last'.
+        """
+        return '{} {}'.format(self.first, self.last)
+    
+    @fullname.setter
+    def fullname(self, name):
+        """
+        Setter for the fullname property. Allows setting the full name by 
+        splitting the name into first and last names.
+        
+        :param name: Full name to be set.
+        """
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self):
+        """
+        Deleter for the fullname property. Resets first and last names to None 
+        and prints a message indicating deletion.
+        """
+        print('Delete name!')
+        self.first = None
+        self.last = None
+
+# Example Usage:
+emp1 = Employee('ashim', 'kc', 69000)  # Create an Employee object with initial values.
+emp1.fullname = 'aseeeeem kc'  
+print(emp1.pay)  
+print(emp1.email) 
+print(emp1.fullname)  
+
+del emp1.fullname  
+print(emp1.email)
+
+################################################################
+
+
+#  SECURITY LEVELS:
+# DEBUG
+# INFO
+# Warning
+# Error 
+# Critical
+
+import logging
+
+# logging.basicConfig(level = logging.DEBUG)
+# logging.debug('ALL components failed')
+
+# logging.warning('You have got 20 mails in your inbox!')
+# logging.critical('ALL components failed')
+
+logger = logging.getLogger("Ashim logger")
+# logger.info("The best logger created right now")
+# logger.critical("Your app was taken down!")
+
+# logger.log(logging.ERROR, "An error occured")
+logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler("mylog.log")
+handler.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(levelname)s - %(asctime)s: %(message)s')
+handler.setFormatter(formatter)
+
+logger.addHandler(handler)
+# Logging messages
+logger.debug("This is a debug message!")
+logger.info("This is an important information")
+logger.warning("This is a warning!") 
+logger.error("This is an error!") 
+logger.critical("This is critical!")
+
+##############################################
+
+import threading
+
+"""
+Introduction:
+Multithreading allows a CPU to execute multiple threads concurrently. 
+This improves efficiency by performing multiple operations at the same time, 
+making better use of CPU resources.
+"""
+
+# Example of creating and running threads:
+
+def function1():
+    """
+    Function to print 'one' 10,000 times.
+    """
+    for x in range(10000):
+        print("one")
+
+def function2():
+    """
+    Function to print 'two' 10,000 times.
+    """
+    for x in range(10000):
+        print("two")
+
+# Create threads for function1 and function2
+t1 = threading.Thread(target=function1)  
+t2 = threading.Thread(target=function2)  
+
+# Start the threads
+t1.start()  
+t2.start()  
+
+# Wait for both threads to complete
+t1.join()  
+t2.join()  
+
+def hello():
+    """
+    Function to print 'Hello!' 50 times.
+    """
+    for x in range(50):
+        print("Hello!")
+
+# Create and start a new thread for the hello function
+t1 = threading.Thread(target=hello)  
+t1.start()  
+
+# Wait for the hello thread to complete before printing the final statement
+t1.join()  
+
+print("Another print statement text")
+
+
+#################################
+# Recursion
+
+# Finding Factorial
+# Non-recursive way
+
+"""
+Factorial is a mathematical operation that multiplies a given number by all positive integers less than itself.
+For example, 5! (factorial of 5) = 5 * 4 * 3 * 2 * 1 = 120.
+There are two common ways to calculate a factorial: iteratively and recursively.
+"""
+
+n = 7  # We want to find the factorial of 7.
+fact = 1  # Start with 1 because multiplying by 1 does not change the result.
+
+"""
+This loop will keep multiplying fact by n and then decreasing n until n becomes 0.
+When n reaches 0, the loop ends, and fact contains the factorial of the original number.
+"""
+while n > 0:
+    fact = fact * n  # Multiply current fact by n.
+    n -= 1  # Decrease n by 1 to eventually reach the base case.
+
+print(fact)  # Output the result, which is the factorial of 7.
+
+# Recursive way
+
+"""
+The recursive approach uses the concept of a function calling itself to solve a problem.
+A base case is necessary to stop the recursion and prevent infinite loops.
+"""
+
+def factorial(n):
+    if n < 1:  # Base case: if n is 0 or less, return 1 because 0! = 1.
+        return 1
+    else:
+        """
+        Recursive case: n! = n * (n-1)!
+        This line calls the factorial function with n-1 until n reaches 0.
+        """
+        number = n * factorial(n-1)
+        return number  # The recursion unwinds, multiplying the numbers in reverse order.
+
+print(factorial(7))  # This will also print the factorial of 7.
+
+"""
+Explanation:
+In recursion, each function call is stored in the call stack until the base case is reached.
+After that, the stack unwinds, and the results are multiplied together.
+"""
+
+# Fibonacci Sequence
+# Iterative way
+
+"""
+The Fibonacci sequence is a series where each number is the sum of the two preceding ones.
+The sequence starts with 0 and 1 and proceeds as 0, 1, 1, 2, 3, 5, 8, 13, ...
+"""
+
+def fibonacci(n):
+    a, b = 0, 1  # Start with the first two numbers in the sequence.
+
+    """
+    Loop to calculate the nth Fibonacci number.
+    Each iteration moves to the next number in the sequence by updating a and b.
+    """
+    for x in range(n):
+        a, b = b, a + b  # Update a to the next number and b to the sum of the last two.
+
+    return a  # Return the nth Fibonacci number.
+
+print(fibonacci(500))  # This efficiently computes and prints the 500th Fibonacci number.
+
+"""
+Explanation:
+The iterative approach is more efficient than the recursive one for Fibonacci, as it avoids repeated calculations.
+"""
+
+# Recursive way
+
+"""
+The recursive method is simpler but less efficient for large numbers, as it involves many repeated calculations.
+"""
+
+def fibonacci2(n):
+    if n <= 1:  # Base case: return n if it is 0 or 1, as these are the first two numbers in the sequence.
+        return n
+    else:
+        # Recursive case: return the sum of the two previous Fibonacci numbers.
+        return (fibonacci2(n-1) + fibonacci2(n-2))
+
+"""
+Warning:
+Calculating fibonacci2(500) is extremely inefficient and will take a long time due to the exponential growth in function calls.
+It’s generally impractical to use the recursive method for large n unless optimized (e.g., with memoization).
+"""
+print(fibonacci2(500))  # This is not practical for large numbers due to its inefficiency.
+
+"""
+Additional Explanation:
+The recursive Fibonacci function has an exponential time complexity of O(2^n) due to the redundant calculations,
+whereas the iterative method has a linear time complexity of O(n), making it much more suitable for large inputs.
+"""
+
+"""
+General Note:
+Recursion is powerful but should be used with caution for large problems or where performance is critical.
+Understanding the difference between recursion and iteration is crucial for efficient algorithm design.
+"""
+
+
+
+#########################################################
+
+import threading
+import time
+
+"""
+Introduction:
+This script demonstrates the use of locking and semaphores in multithreading.
+- **Locking**: Ensures that only one thread can access a critical section of code at a time.
+- **Semaphores**: Control access to a resource by multiple threads, managing concurrent access.
+"""
+
+# Locking Example
+
+x = 8192
+lock = threading.Lock()
+
+def double():
+    """
+    Doubles the global variable x until it reaches or exceeds 16,384.
+    Uses a lock to prevent simultaneous access to the variable by multiple threads.
+    """
+    global x, lock
+    lock.acquire() 
+    while x < 16384:
+        x *= 2
+        print(x)
+        time.sleep(1)
+    print("Reached the maximum!")
+    lock.release()
+
+def halve():
+    """
+    Halves the global variable x until it drops to 1 or below.
+    Uses a lock to prevent simultaneous access to the variable by multiple threads.
+    """
+    global x, lock
+    lock.acquire()
+    while x > 1:
+        x /= 2
+        print(x)
+        time.sleep(1)
+    print("Reached the minimum!")
+    lock.release()
+
+# Create threads for halving and doubling
+t1 = threading.Thread(target=halve)
+t2 = threading.Thread(target=double)
+
+# Start threads
+t1.start()
+t2.start()
+
+# Semaphores Example
+
+semaphore = threading.BoundedSemaphore(value=5)
+
+def access(thread_number):
+    """
+    Simulates access to a shared resource controlled by a semaphore.
+    Each thread tries to acquire the semaphore, simulates access, and then releases it.
+    """
+    print("{} is trying to access".format(thread_number))
+    semaphore.acquire()
+    print("{} was granted access!".format(thread_number))
+    time.sleep(5)
+    print("{} is now releasing".format(thread_number))
+    semaphore.release()
+    print("{} released".format(thread_number))
+
+# Create and start threads that attempt to access the resource
+for thread_number in range(1, 11):
+    t = threading.Thread(target=access, args=(thread_number,))
+    t.start()
+    time.sleep(1)
+
+#############################################################
+
+
+import xml.dom.minidom
+
+"""
+Introduction:
+This script demonstrates XML processing using the Document Object Model (DOM) in Python.
+The DOM allows you to parse, modify, and create XML documents programmatically.
+"""
+
+# Parse the XML file
+domtree = xml.dom.minidom.parse('data.xml')
+group = domtree.documentElement
+
+# Get all 'person' elements
+persons = group.getElementsByTagName('person')
+
+# Print information for each person
+for person in persons:
+    print("-----PERSON-----")
+    if person.hasAttribute('id'):
+        print("ID: {}".format(person.getAttribute('id')))
+    
+    # Print name and weight of each person
+    print("Name: {}".format(person.getElementsByTagName('name')[0].childNodes[0].data))
+    print("Weight: {}".format(person.getElementsByTagName('weight')[0].childNodes[0].data))
+
+# Modify the XML content
+# Update the name of the third person
+persons[2].getElementsByTagName('name')[0].childNodes[0].nodeValue = "New Name"
+
+# Update the ID of the first person
+persons[0].setAttribute('id', '100')
+
+# Write the changes to the XML file
+domtree.writexml(open('data.xml', 'w'))
+
+# Create a new person element
+newperson = domtree.createElement('person')
+newperson.setAttribute('id', '6')
+
+# Create and append child elements to the new person
+name = domtree.createElement('name')
+name.appendChild(domtree.createTextNode('Paul Green'))
+
+age = domtree.createElement('age')
+age.appendChild(domtree.createTextNode('20'))
+
+weight = domtree.createElement('weight')
+weight.appendChild(domtree.createTextNode('70'))
+
+height = domtree.createElement('height')
+height.appendChild(domtree.createTextNode('180'))
+
+# Append child elements to the new person element
+newperson.appendChild(name)
+newperson.appendChild(age)
+newperson.appendChild(weight)
+newperson.appendChild(height)
+
+# Append the new person to the root element
+group.appendChild(newperson)
+
+# Write the updated XML to the file
+domtree.writexml(open('data.xml', 'w'))
+
+
+####################################################
+
+
+
+# Using SAX for XML Processing
+import xml.sax
+
+# SAX (Simple API for XML) is an event-driven parser that processes XML data sequentially.
+# Unlike DOM, SAX does not load the entire XML document into memory. Instead, it triggers events as it parses.
+
+class GroupHandler(xml.sax.ContentHandler):
+    
+    def startElement(self, name, attrs):
+        """
+        Called when an element starts.
+        - `name`: The name of the element.
+        - `attrs`: A dictionary-like object containing attributes of the element.
+        """
+        self.current = name
+        if self.current == "person":
+            print('------PERSON-----')
+            print("ID: {}".format(attrs['id']))
+
+    def characters(self, content: str) -> None:
+        """
+        Called when character data is encountered.
+        - `content`: The text content within the element.
+        """
+        # Assign content based on current element type
+        if self.current == "name":
+            self.name = content
+        elif self.current == "age":
+            self.age = content
+        elif self.current == "weight":
+            self.weight = content
+        elif self.current == "height":
+            self.height = content
+
+    def endElement(self, name: str) -> None:
+        """
+        Called when an element ends.
+        - `name`: The name of the element.
+        """
+        # Print element data based on type
+        if self.current == "name":
+            print("Name: {}".format(self.name))
+        elif self.current == "age":
+            print("Age: {}".format(self.age))
+        elif self.current == "weight":
+            print("Weight: {}".format(self.weight))
+        elif self.current == "height":
+            print("Height: {}".format(self.height))
+        
+        # Reset the current element
+        self.current = ""
+            
+
+# Create a handler and parser instance
+handler = GroupHandler()
+parser = xml.sax.make_parser()
+parser.setContentHandler(handler)
+
+# Parse the XML file
+parser.parse('data.xml')

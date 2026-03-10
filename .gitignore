@@ -1,2 +1,13 @@
 .idea/
 .vscode/
+# dont include notes and books
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+algorithms/
+dbms/
+mathematics/
+operating_systems/
+digital_logic_and_computer_architecture/
+vault/

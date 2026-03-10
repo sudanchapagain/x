@@ -26,7 +26,7 @@ using System.IO;
  * ref, return, sbyte, sealed, short, sizeof, stackalloc, static, string, struct,
  * switch, this, throw, true, try, typeof, uint, ulong, unchecked, unsafe, ushort,
  * using, virtual, void, volatile, while.
-
+ 
  * Contextual keywords:
  * add, allows, alias, and, ascending, args, async, await, by, descending, dynamic,
  * equals, field, file, from, get, global, group, init, into, join, let,
@@ -303,8 +303,8 @@ namespace Learning {
             }
         }
 
-        // Person p = new Person { Name = "Sudan", Age = 21 };
-        // p.Greet();
+        Person p = new Person { Name = "Sudan", Age = 21 };
+        p.Greet();
 
         // CONSTRUCTORS
         class Car {
@@ -333,9 +333,9 @@ namespace Learning {
             }
         }
 
-        // Car cars = new Cars("Toyota", 2022);
-        // (string model, int year) = cars;
-        // Console.WriteLine($"{model}, {year}");
+        Car cars = new Cars("Toyota", 2022);
+        (string model, int year) = cars;
+        Console.WriteLine($"{model}, {year}");
 
         // THIS REFERENCE
         class Employee {
@@ -398,9 +398,9 @@ namespace Learning {
 
         // DYNAMIC BINDING
         // dynamic bypasses compile-time type checking.
-        // dynamic value = 10;
-        // value = "Hello";  // Allowed at runtime
-        // Console.WriteLine(value);
+        dynamic value = 10;
+        value = "Hello";  // Allowed at runtime
+        Console.WriteLine(value);
 
         // OPERATOR OVERLOADING
         class Point {
@@ -416,10 +416,10 @@ namespace Learning {
             }
         }
 
-        // Point p1 = new Point(1, 2);
-        // Point p2 = new Point(3, 4);
-        // Point p3 = p1 + p2;
-        // Console.WriteLine($"({p3.X}, {p3.Y})");
+        Point p1 = new Point(1, 2);
+        Point p2 = new Point(3, 4);
+        Point p3 = p1 + p2;
+        Console.WriteLine($"({p3.X}, {p3.Y})");
 
         // INHERITANCE
         // Inheritance allows a class to derive from another class.
@@ -459,8 +459,8 @@ namespace Learning {
 
         // OBJECT TYPE
         // The object type is the base of all types in C#.
-        // object obj = "Hello";
-        // Console.WriteLine(obj);
+        object obj = "Hello";
+        Console.WriteLine(obj);
 
         // STRUCTS
         // Structs are value types and used for lightweight objects.
@@ -507,8 +507,8 @@ namespace Learning {
             Friday,
             Saturday
         };
-        // Days today = Days.Monday;
-        // Console.WriteLine(today);
+        Days today = Days.Monday;
+        Console.WriteLine(today);
 
         // GENERICS
         // It allow defining type-safe classes and methods.
@@ -523,23 +523,24 @@ namespace Learning {
         // A delegate is a type that represents references to methods with a specific signature.
         // It allows methods to be passed as parameters.
         // delegate void MessageDelegate(string message); // Delegate declaration
-        //
-        // class Programs {
-        //     static void PrintMessage(string msg) => Console.WriteLine(msg);
-        //
-        //     static void Main() {
-        //         MessageDelegate del = PrintMessage; // Assign method to delegate
-        //         del("Hello, Delegates!"); // Invoke the delegate
-        //     }
-        // }
+
+        class Programs {
+            static void PrintMessage(string msg) => Console.WriteLine(msg);
+        
+            static void Main() {
+                MessageDelegate del = PrintMessage; // Assign method to delegate
+                del("Hello, Delegates!"); // Invoke the delegate
+            }
+        }
 
         // MULTICAST DELEGATES
         // A delegate can reference multiple methods.
-        // void Method1(string msg) => Console.WriteLine($"Method1: {msg}");
-        // void Method2(string msg) => Console.WriteLine($"Method2: {msg}");
-        // MessageDelegate del = Method1;
-        // del += Method2;  // Multicast delegate
-        // del("Hello!");
+        void Method1(string msg) => Console.WriteLine($"Method1: {msg}");
+        void Method2(string msg) => Console.WriteLine($"Method2: {msg}");
+        MessageDelegate del = Method1;
+        del += Method2;  // Multicast delegate
+        del("Hello!");
+
 
         // EVENTS
         // An event is a special type of delegate used for notifications.
@@ -565,145 +566,125 @@ namespace Learning {
             }
         }
 
+
         // LAMBDA EXPRESSION
         // A lambda expression is a concise way to write anonymous methods.
         // SYNTAX
         // (param1, param2) => expression;
         // WITH DELEGATES
-        // Func<int, int, int> add = (a, b) => a + b;
-        // Console.WriteLine(add(5, 3));  // Output: 8
+        Func<int, int, int> add = (a, b) => a + b;
+        Console.WriteLine(add(5, 3));  // Output: 8
         // FILTERING A LIST WITH LAMBDA
-        // List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-        // var evenNumbers = numbers.Where(n => n % 2 == 0);
-        // foreach (var num in evenNumbers) {
-        //     Console.WriteLine(num);
-        // }
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+        var evenNumbers = numbers.Where(n => n % 2 == 0);
+        foreach (var num in evenNumbers) {
+            Console.WriteLine(num);
+        }
 
         // EXCEPTION HANDLING
-        // try {
-        //     int result = 10 / 0;  // Throws a DivideByZeroException
-        // } catch (DivideByZeroException ex) {
-        //     Console.WriteLine($"Error: {ex.Message}");
-        // } finally {
-        //     Console.WriteLine("Execution completed.");
-        // }
+        try {
+            int result = 10 / 0;  // Throws a DivideByZeroException
+        } catch (DivideByZeroException ex) {
+            Console.WriteLine($"Error: {ex.Message}");
+        } finally {
+            Console.WriteLine("Execution completed.");
+        }
 
         // CUSTOM
-        // class CustomException : Exception {
-        //     public CustomException(string message) : base(message) { }
-        // }
-        //
-        // class Program {
-        //     static void Main() {
-        //         try {
-        //             throw new CustomException("This is a custom exception!");
-        //         } catch (CustomException ex) {
-        //             Console.WriteLine($"Caught: {ex.Message}");
-        //         }
-        //     }
-        // }
+        class CustomException : Exception {
+            public CustomException(string message) : base(message) { }
+        }
+        
+        class Program {
+            static void Main() {
+                try {
+                    throw new CustomException("This is a custom exception!");
+                } catch (CustomException ex) {
+                    Console.WriteLine($"Caught: {ex.Message}");
+                }
+            }
+        }
 
         // LINQ
         // LINQ provides SQL-like querying capabilities in C#.
-        // int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        //
-        // var evenNumbers = from num in numbers
-        //         where num % 2 == 0
-        //         select num;
-        //
-        // foreach (var num in evenNumbers)
-        //         Console.WriteLine(num);
+        int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        
+        var evenNumbers = from num in numbers
+                where num % 2 == 0
+                select num;
+        
+        foreach (var num in evenNumbers)
+                Console.WriteLine(num);
 
         // LINQ WITH OBJECTS
-        // class Student {
-        //     public string Name { get; set; }
-        //     public int Age { get; set; }
-        // }
-        //
-        // List<Student> students = new List<Student> {
-        //     new Student { Name = "Alice", Age = 22 },
-        //     new Student { Name = "Bob", Age = 19 }
-        // };
-        //
-        // var adultStudents = students.Where(s => s.Age >= 21);
-        //
-        // foreach (var student in adultStudents)
-        //      Console.WriteLine(student.Name);
+        class Student {
+            public string Name { get; set; }
+            public int Age { get; set; }
+        }
+        
+        List<Student> students = new List<Student> {
+            new Student { Name = "Alice", Age = 22 },
+            new Student { Name = "Bob", Age = 19 }
+        };
+        
+        var adultStudents = students.Where(s => s.Age >= 21);
+        
+        foreach (var student in adultStudents)
+             Console.WriteLine(student.Name);
+
 
         // Working with Databases (ADO.NET & Entity Framework)
         // C# provides ADO.NET and Entity Framework for database interactions.
-        // using System;
-        // using System.Data.SqlClient;
-        //
-        // class Program {
-        //     static void Main() {
-        //         string connString = "Server=myServer;Database=myDB;User Id=myUser;Password=myPassword;";
-        //         using (SqlConnection conn = new SqlConnection(connString)) {
-        //             conn.Open();
-        //             Console.WriteLine("Connected to Database!");
-        //         }
-        //     }
-        // }
+        using System;
+        using System.Data.SqlClient;
+        
+        class Program {
+            static void Main() {
+                string connString = "Server=myServer;Database=myDB;User Id=myUser;Password=myPassword;";
+                using (SqlConnection conn = new SqlConnection(connString)) {
+                    conn.Open();
+                    Console.WriteLine("Connected to Database!");
+                }
+            }
+        }
+
 
         // Entity Framework (EF) Example
         // EF allows working with databases using ORM (Object-Relational Mapping).
-        // using Microsoft.EntityFrameworkCore;
-        //
-        // public class Student {
-        //     public int Id { get; set; }
-        //     public string Name { get; set; }
-        // }
-        //
-        // public class SchoolContext : DbContext {
-        //     public DbSet<Student> Students { get; set; }
-        //
-        //     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //         => options.UseSqlServer("Server=myServer;Database=myDB;User Id=myUser;Password=myPassword;");
-        // }
-        //
-        // // Adding a Student
-        // using (var context = new SchoolContext()) {
-        //     context.Students.Add(new Student { Name = "Alice" });
-        //     context.SaveChanges();
-        // }
+        using Microsoft.EntityFrameworkCore;
+
+        public class Student {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+        
+        public class SchoolContext : DbContext {
+            public DbSet<Student> Students { get; set; }
+        
+            protected override void OnConfiguring(DbContextOptionsBuilder options)
+                => options.UseSqlServer("Server=myServer;Database=myDB;User Id=myUser;Password=myPassword;");
+        }
+        
+        // Adding a Student
+        using (var context = new SchoolContext()) {
+            context.Students.Add(new Student { Name = "Alice" });
+            context.SaveChanges();
+        }
+
 
         // ASP.NET
-        /*
-         *      using Microsoft.AspNetCore.Mvc;
-         *      [Route("api/[controller]")]
-         *      [ApiController]
-         *      public class HelloController : ControllerBase
-         *      {
-         *          [HttpGet]
-         *          public string Get() => "Hello, ASP.NET!";
-         *      }
-         *
-         * =====================================
-         *
-         * var builder = WebApplication.CreateBuilder(args);
-         * var app = builder.Build();
-         * app.MapGet("/", () => "Hello, Web!");
-         * app.Run();
-         */
+        using Microsoft.AspNetCore.Mvc;
+        [Route("api/[controller]")]
+        [ApiController]
+        public class HelloController : ControllerBase
+        {
+            [HttpGet]
+            public string Get() => "Hello, ASP.NET!";
+        }
 
-        // TODO
-        // Tuples – Lightweight data structures that hold multiple values.
-        // Pattern Matching – Enhancements in modern C# versions (switch expressions, type patterns, etc.).
-        // Nullable Reference Types – Introduced in C# 8.0 to improve null safety.
-        // Asynchronous Programming (async/await) – Essential for working with modern applications, especially web and cloud-based applications.
-        // Reflection – Inspecting metadata at runtime.
-        // Attributes – Metadata that can be applied to classes, methods, properties, etc.
-        // Memory Management & Performance:
-        //
-        // Garbage Collection (GC)
-        // Span<T> and Memory<T> for performance optimizations.
-        // Threading and Parallel Programming:
-        // Task Parallel Library (TPL)
-        // PLINQ (Parallel LINQ)
-        // File Handling and Streams – Reading and writing files.
-        // Interop and Unsafe Code – Using unsafe keyword, pointers, and calling unmanaged code.
-        // Records (C# 9+) – Immutable types for better data modeling.
-        // Dependency Injection (DI) – Common in modern .NET applications.
-        // YIELD
+        var builder = WebApplication.CreateBuilder(args);
+        var app = builder.Build();
+        app.MapGet("/", () => "Hello, Web!");
+        app.Run();
     }
 }
