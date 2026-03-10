@@ -2,15 +2,12 @@
 //                        THIS FILE CANNOT BE COMPILED.
 // =============================================================================
 
-
-
 ABOUT
 =====
 
 Modern systems programming language focused on performance, safety, and 
 concurrency. The benefit rust provides is thread safety and memory safety due
 to the programs being required to be written in explicit and intentional ways.
-
 
 RESOURCES
 =========
@@ -37,9 +34,6 @@ MISC
 - <https://github.com/pretzelhammer/rust-blog>
 - <https://github.com/skyzh/type-exercise-in-rust>
 - <https://github.com/ctjhoa/rust-learning>
-
-
-
 
 BASIC RUST CONCEPTS
 ===================
@@ -78,8 +72,6 @@ BASIC RUST CONCEPTS
 
 10. Modules and Crates: Modules: Organize code into namespaces. Crates:
     Packages of Rust code, can be libraries or executables.
-
-
 
 DATA TYPES
 ==========
@@ -2462,113 +2454,9 @@ pub fn count_characters(s: &str) -> u32 {
 
 /////////////////////////////////////////////////////////////////////////////
 
-// Consider this struct
-
-struct User<a'> {
-    first_name: &'a str,
-    last_name: &'a str,
-}
-
-// What is we want to create a User<'static> that fully owns its data?
-
-// Now consider this struct
-
-struct User {
-    first_name: String,
-    last_name: String,
-}
-
-// What if we want to avoid unnecessary allocations while still allowing the strings to be mutable?
-
-// Combined type that does not require allocation
-
-use std::borrow::cow;
-
-struct User<'a> {
-    first_name: Cow<'a, str>,
-    last_name: Cow<'a, str>,
-}
-
-impl<'a> User<'a> {
-    // 'find_by' returns an owned User
-    pub fn find_by(first_name: &str, last_name: &str) -> User<'static> {
-        // Deserialized and must be owned
-        User {
-            first_name: Cow::Owned(first_name.to_owned())
-            last_name: Cow::Owned(last_name.to_owned())
-        }
-    }
-
-    // 'get_user' can accept borrowed or owned identifiers due to cow
-    pub fn get_user(user: &user) {
-        // Serialize or use references as needed, no allocation required
-        println!(
-            "Getting user: first name = '{entity.first_name}', last name '{entity.last_name}'"
-        );
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-
-#![allow(dead_code)]
-
-#[no_mangle]
-pub extern "C" fn flatmap_sum(xss: &[Vec<i32>]) -> i32 {
-    xss.iter().flat_map(|x| xs.iter()).sum()
-}
-
-// the generates assembly for `flatmap_sum` hot inner loop:
 /*
-.LBB01_11:
-    vpaddd ymm0, ymm0, ymmword ptr [r8 + 4*rax]
-    vpaddd ymm1, ymm1, ymmword ptr [r8 + 4*rax + 32]
-    vpaddd ymm2, ymm2, ymmword ptr [r8 + 4*rax + 64]
-    vpaddd ymm3, ymm3, ymmword ptr [r8 + 4*rax + 96]
-    add    rax, 32
-    cmp    r9, rax
-    jne    .LBB0_11
-    ; horizontal reduce ymm0..ymm3 down to eax
-*/
-
-// and now the manually crafted loop using nested for:
-
-#[no_mangle]
-pub extern "C" fn nested_sum(xss: &[Vec<i32>]) -> i32 {
-    let mut acc = 0;
-    for xs in xss {
-        for &x in xs {
-            acc += x;
-        }
-    }
-    acc
-}
-
-// and the corresponding generated assembly for hot inner loop...
-/*
-.LBB0_16:
-    vpaddd ymm0, ymm0, ymmword ptr [r9 + 4*rax]
-    vpaddd ymm1, ymm1, ymmword ptr [r9 + 4*rax + 32]
-    vpaddd ymm2, ymm2, ymmword ptr [r9 + 4*rax + 64]
-    vpaddd ymm3, ymm3, ymmword ptr [r9 + 4*rax + 96]
-    add    rax, 32
-    cmp    r11, rax
-    jne    .LBB0_16
-    ; same style horizontal reduction to eax
-*/
-
-// Basically Identical, except for some bookkeeping differences ..
-
-// - Base pointer register is r8 in one, r9 in the other.
-// - Loop limit register is r9 vs r11.
-// - But structurally: identical AVX2 vectorized summation over chunks of 32 i32s.
-
-/////////////////////////////////////////////////////////////////////////////
-
-/*
-
 repr(C): languages like C and C++ have predictable, well-defined memory
 layouts that are not subject to automatic rearrangement by the compiler.
-
 */
 
 #[repr(C)]
