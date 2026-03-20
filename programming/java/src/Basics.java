@@ -4,6 +4,9 @@ import java.util.*;
 
 public class Basics {
     public static void basics(String[] args) {
+        // to print something
+        System.out.println("Sudan Chapagain");
+
         // <https://docs.oracle.com/en/java/javase/17/>
         // int is 32bit.
         // byte is 8bit duh.
@@ -46,46 +49,52 @@ public class Basics {
         /* simiarly for binary and octal */
 
 
-        // boxed types are object counterparts of primitives.
-        // int to Integer
-        // boolean to Boolean, etc.
-        // these are heap allocated. boxing and unboxing create temporary
-        // objects and adds GC pressure
-        // int x = 10;
-        // Integer y = x; //boxing
-        // int z = y; //unboxing
+        // boxed types are object counterparts of primitives that are heap allocated.
+        // int to Integer, boolean to Boolean, etc.
+        // boxing and unboxing create temporary objects and adds GC pressure
+        int x = 10;
+        Integer y = x; //boxing
+        int z = y; //unboxing
 
         // every object in java has
         // - header: metadata with mark word, class pointer. these are
         //           typically ~12 bytes.
         // - fields: memory for variables which are aligned by type.
         // - padding: to ensure alignment (8 byte alignment on 64 bit JVM)
-        // 
+
         // An object with two int fields
         // = 12 (header)
         //  + 4
         //  + 4
         //  + 0 (padding)
-        // = 20 -> rounded to 24 bytes as hotspot jvm (used by oracle,
-        //         openjdk, etc) round all object sizes to a multiple of
-        //         8-bytes on 64-bit architectures.
+        // = 20 -> rounded to 24 bytes as hotspot jvm (used by oracle, openjdk, etc)
+        // round all object sizes to a multiple of 8-bytes on 64-bit architectures.
         // 
         // DEMONSTRATE WITH :
-        // 
-        // class A {
-        //    int x;
-        //    int y;
-        // }
-        // System.out.println(ClassLayout.parseClass(A.class).toPrintable());
-        //
+        class A {
+           int x;
+           int y;
+        }
+        System.out.println(ClassLayout.parseClass(A.class).toPrintable());
+
         // object references (like pointers) are typically 4 bytes or 8 bytes
         // depending upon the config.
-        //
+
+        // to take in input
+        Scanner sc = new Scanner(System.in);
+        System.out.println("input three numbers");
+        int xja = sc.nextInt();
+        int yja = sc.nextInt();
+        int zja = sc.nextInt();
+        int great = (xja > yja && xja > zja) ? xja : (yja > zja && yja > xja)? yja : zja;
+        System.out.println(great);
+        sc.close();
+
         // arrays in java are objects so they are heap allocated.
         // they have header, length field, and actual data
         // element layout is contiguous in memory for primitives
-        // int[] a = new int[5];
-        //
+        int[] a = new int[5];
+
         // jagged arrays like int[][] a = new int[3][2];
         // each sub array is its own object. a[0], a[1] are references to
         // int[] objects. memory is not truly 2d
@@ -128,7 +137,7 @@ public class Basics {
         //
         // <https://shipilev.net/jvm/anatomy-quarks/>
         // java bytecode can be analyzed with `javap -c`
-        System.out.println("Hello World");
+
         int xArgument = Integer.parseInt(args[0]);
         int yArgument = Integer.parseInt(args[1]);
         System.out.println("Result of sum: " + (xArgument + yArgument));
@@ -145,26 +154,27 @@ public class Basics {
         // control flow
         // if, if else, switch, for, while, do while, for each, break, continue,
         // return
-        if ((xArgument & yArgument) != 0) {
-        } else {
-        }
+        if ((xArgument & yArgument) != 0) { } else { }
 
-        for (int x = 0; x < xArgument; x++) {
-        }
+        for (int xx = 0; x < xArgument; xx++) { }
 
         while (xArgument < yArgument) {
             break;
         }
 
+        for (String argsString : args) {
+          System.out.println(argsString);
+        }
+
         char option = 'a';
-        int x = 0, y = 0;
+        int xa = 0, ya = 0;
 
         switch (option) {
             case '+':
-                System.out.println("Addition=" + (x + y));
+                System.out.println("Addition=" + (xa + ya));
                 break;
             case '-':
-                System.out.println("Subtraction=" + (x - y));
+                System.out.println("Subtraction=" + (xa - ya));
                 break;
             default:
                 System.out.println("Wrong choice!");
@@ -175,5 +185,24 @@ public class Basics {
         int[] numbers = {5, 2, 9, 1, 6};
         Arrays.sort(numbers);
         System.out.println("Sorted array: " + Arrays.toString(numbers));
+
+        String str = "hello world!";
+        var str01 = str.charAt(0);
+
+        char[] chars = new char[5];
+        str.getChars(0, 3, chars, 0); // str.getChars(srcBegin, srcEnd, dst, dstBegin)
+        for (char c : chars) {
+          System.out.print(c);
+        }
+
+        char[] charArr = str.toCharArray();
+        String charArrToString = charArr.toString();
+        var isCharEqualTest1 = str.equals(charArrToString);
+        var isCharEqualTest2 = str.equalsIgnoreCase(charArrToString);
+        var isCharEqualTest3 = str.compareTo(charArrToString);
+
+        var getFirstThree = str.substring(0, 2);
+        getFirstThree = getFirstThree.concat("Meow");
+        getFirstThree = getFirstThree.replace("Meow", "\n");
     }
 }

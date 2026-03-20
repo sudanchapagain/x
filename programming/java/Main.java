@@ -21,7 +21,7 @@ public class Main {
                 "20"
         };
         Basics basic = new Basics();
-        basic.basics(str);
+        Basics.basics(str);
         System.out.println("---------------------------------");
 
         // classes, interface, abstract class, inheritance, method overriding
@@ -29,6 +29,11 @@ public class Main {
         eac.something();
         ExampleInterface ei = new ExampleInterface();
         ei.nothing();
+        IntegerCalculator ic = new IntegerCalculator();
+        ic.add(20, 25);
+        ic.subtract(20, 25);
+        ic.multiple(20, 25);
+        ic.divide(20, 25);
         System.out.println("---------------------------------");
 
         // constructors, method overloading (constructor overloading implementation)
@@ -63,5 +68,20 @@ public class Main {
         Threado th = new Threado();
         th.myThread();
         th.syncThread();
+    }
+}
+
+class LearnMore {
+    // vararg function
+    public static void Names(String... n) {
+        for (String i : n) {
+            System.out.print(i + " "); 
+        }
+        System.out.println(); 
+    }
+
+    public static void caller(String[] args) {
+        Names("geek1", "geek2");
+        Names("geek1", "geek2", "geek3");
     }
 }
