@@ -20,10 +20,14 @@ graphics/notes
 networking/notes
 networking/system design
 programming/c/learning
-programming/lambda_calculus
-programming/lisp
+programming/misc/lambda_calculus
+programming/misc/lisp
 programming/misc/go/learn
 programming/programming.md
-programming/python/learning
+programming/misc/python/learning
+
+history_of_computing/
+programming/java/books
 university/
 links.md
+cse.md
