@@ -5,6 +5,10 @@
 *.docx
 *.xlsx
 *.pptx
+.project
+.classpath
+.settings/
+.setting
 algorithms/
 dbms/
 mathematics/
