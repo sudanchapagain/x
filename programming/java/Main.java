@@ -4,21 +4,27 @@ import src.inheritance.abstractClass.*;
 
 /*
 ( JDK - Java Development Tools (JRE + Development Toools)
-  ( JRE - Java Runtime Environemnt (jvm + library class)
-    ( JVM - Java Virtual Machine   {JIT - just in time )))
+   ( JRE - Java Runtime Environemnt (jvm + library class)
+        ( JVM - Java Virtual Machine   {JIT - just in time )))
 
-  - JDK: compiler (javac), archiver (jar), docs gen (javadoc), debuggers, monitoring tools
-  - JRE: UI toolkits (Swing, AWT, JavaFX), deployment tech (Java Web Start, applets),
-      integration libs (JDBC, RMI, CORBA), base libraries (java.*, javax.*)
-  - JVM: class loader subsystem, bytecode verifier, bytecode interpreter, jit compiler
+    - JDK: compiler (javac), archiver (jar), docs gen (javadoc), debuggers, monitoring tools
+    - JRE: UI toolkits (Swing, AWT, JavaFX), deployment tech (Java Web Start, applets),
+        integration libs (JDBC, RMI, CORBA), base libraries (java.*, javax.*)
+    - JVM: class loader subsystem, bytecode verifier, bytecode interpreter, jit compiler
 */
 
 
 public class Main {
+    //     +----------- static means shared by all instances of meow.
+    //     |            not just that but rather that this main doesnt even
+    //     |            require that meow exist (more concretely, main doesnt
+    //     |            require an instance of meow). static methods cannot
+    //     |            access instance variables or methods.
+    //     V
     public static void main(String[] args) {
         String str[] = {
-                "10",
-                "20"
+            "10",
+            "20"
         };
         Basics basic = new Basics();
         Basics.basics(str);
