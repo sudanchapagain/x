@@ -884,14 +884,14 @@ class OOP() {
 
         class SickDomesticCat : RegularCat(), CatAtHospital {
             override var isHungry: Boolean = false
-                get() = field
-                set(value) { /**/ }
+
+            get() = field
+            set(value) { /**/ }
+
             override fun pet() { /**/ }
             override fun feed(food: Food) { /**/ }
             override fun checkStomach() { /**/ }
-            override fun giveMedicine(pill: Pill)
-            {//.}
-            }
+            override fun giveMedicine(pill: Pill) { /**/ }
 
             // WHY DO YOU PREVENT A CAT FROM POOPING?
             abstract class Cat {
@@ -2315,3 +2315,257 @@ fun main(args: Array<String>) {
 fun addNumbers(a: Int, b: Int): Int {
     return a + b
 }
+
+/*
+- you declare components (classes).
+- Spring creates and wires them together (Dependency Injection container).
+- You annotate behavior instead of manually configuring everything.
+
+ApplicationContext is the container that holds all the objects ("beans").
+*/
+
+// @SpringBootApplication is a combination of:
+//   @Configuration (this class defines beans)
+//   @EnableAutoConfiguration (Spring guesses setup from dependencies)
+//   @ComponentScan (finds your classes automatically)
+
+@SpringBootApplication
+class Application
+
+fun main(args: Array<String>) {
+    runApplication<Application>(*args)
+
+    /*
+    Spring starts ApplicationContext and scans package for classes with
+    annotations like:
+        - @RestController
+        - @Service
+        - @Repository
+    it then instantiates them, resolves dependencies (constructor injection),
+    and finally starts embedded server.
+    */
+}
+
+// This represents core data and maps to a database table.
+data class User(
+    val id: Long,
+    val name: String,
+    val email: String
+)
+
+// DTO (Data Transfer Object) is used for input/output, separate from domain
+// model.
+data class CreateUserRequest(
+    val name: String,
+    val email: String
+)
+
+
+// Repository = data access abstraction. normally:
+// `interface UserRepository : JpaRepository<User, Long>` but this is faking
+// it for now. @Repository allows spring to detect this class, manage it as a
+// bean, and translate database exceptions (in real setups)
+@Repository
+class UserRepository {
+    private val storage = mutableMapOf<Long, User>()
+    private var idCounter = 1L
+
+    fun findAll(): List<User> = storage.values.toList()
+
+    fun findById(id: Long): User? = storage[id]
+
+    fun save(name: String, email: String): User {
+        val user = User(idCounter++, name, email)
+        storage[user.id] = user
+        return user
+    }
+
+    fun delete(id: Long) {
+        storage.remove(id)
+    }
+}
+
+// Service = business logic layer. Controllers should not contain business
+// logic and repositories should NOT contain business rules. So, services sit
+// in between. When spring sees: UserService(UserRepository).It finds
+// UserRepository bean, and injects it automatically. No `new` keyword
+// anywhere.
+@Service
+class UserService(
+    private val userRepository: UserRepository // constructor injection
+) {
+    fun getAllUsers(): List<User> {
+        return userRepository.findAll()
+    }
+
+    fun getUser(id: Long): User {
+        return userRepository.findById(id)
+            ?: throw UserNotFoundException(id)
+    }
+
+    fun createUser(request: CreateUserRequest): User {
+        if (!request.email.contains("@")) {
+            throw InvalidEmailException(request.email)
+        }
+
+        return userRepository.save(request.name, request.email)
+    }
+
+    fun deleteUser(id: Long) {
+        val existing = userRepository.findById(id)
+            ?: throw UserNotFoundException(id)
+
+        userRepository.delete(existing.id)
+    }
+}
+
+
+// Controller is the HTTP interface that maps URLs -> functions.
+@RestController
+@RequestMapping("/users")
+class UserController(
+    private val userService: UserService
+) {
+    // GET /users
+    @GetMapping
+    fun getAll(): List<User> {
+        return userService.getAllUsers()
+    }
+
+    // GET /users/{id}
+    @GetMapping("/{id}")
+    fun getOne(@PathVariable id: Long): User {
+        return userService.getUser(id)
+    }
+
+    //    POST /users
+    @PostMapping
+    fun create(
+        @RequestBody request: CreateUserRequest
+    ): User {
+        return userService.createUser(request)
+    }
+
+    // DELETE /users/{id}
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long): ResponseEntity<Unit> {
+        userService.deleteUser(id)
+        return ResponseEntity.noContent().build()
+    }
+}
+
+/*
+@RequestMapping("/users")
+    base path
+
+@GetMapping, @PostMapping, etc
+    HTTP method mapping
+
+@RequestBody
+    JSON -> Kotlin object
+
+@PathVariable
+    extract value from URL
+*/
+
+// Instead of returning null or weird responses, Spring encourages throwing exceptions and mapping them globally.
+class UserNotFoundException(id: Long) :
+    RuntimeException("User with id $id not found")
+
+class InvalidEmailException(email: String) :
+    RuntimeException("Invalid email: $email")
+
+@RestControllerAdvice
+class GlobalExceptionHandler {
+    @ExceptionHandler(UserNotFoundException::class)
+    fun handleNotFound(ex: UserNotFoundException): ResponseEntity<String> {
+        return ResponseEntity(ex.message, HttpStatus.NOT_FOUND)
+    }
+
+    @ExceptionHandler(InvalidEmailException::class)
+    fun handleBadRequest(ex: InvalidEmailException): ResponseEntity<String> {
+        return ResponseEntity(ex.message, HttpStatus.BAD_REQUEST)
+    }
+}
+
+// @RestControllerAdvice is global interceptor for controllers and it keeps controllers clean and centralizes error logic.
+// Configuration classes define beans manually when needed.
+@Configuration
+class AppConfig {
+    @Bean
+    fun appName(): String {
+        return "Demo Spring Boot App"
+    }
+}
+
+// @Bean means put this object into ApplicationContext. Now any class can request a String and receive 'Demo Spring Boot App'
+// Spring also allows different behavior per environment:
+
+interface EmailSender {
+    fun send(to: String, message: String)
+}
+
+@Service
+@Profile("dev")
+class ConsoleEmailSender : EmailSender {
+    override fun send(to: String, message: String) {
+        println("DEV EMAIL → $to: $message")
+    }
+}
+
+@Service
+@Profile("prod")
+class RealEmailSender : EmailSender {
+    override fun send(to: String, message: String) { }
+}
+
+
+// Only one implementation is active depending on profile. Run with: `-Dspring.profiles.active=dev`
+
+/*
+
+in real apps:
+
+import jakarta.validation.constraints.*
+
+data class CreateUserRequest(
+    @field:NotBlank
+    val name: String,
+
+    @field:Email
+    val email: String
+)
+
+Then:
+
+@PostMapping
+fun create(@Valid @RequestBody request: CreateUserRequest)
+
+Spring automatically validates and throws errors.
+*/
+
+
+/*
+so the REQUEST FLOW would be
+
+Client -> HTTP request
+    v
+Controller (@RestController)
+    v
+Service (@Service)
+    v
+Repository (@Repository)
+    v
+Database (simulated here)
+
+RESPONSE flows back up.
+
+
+and the DEPENDENCY GRAPH would be
+
+UserController
+    -> UserService
+        -> UserRepository
+
+Spring constructs this graph automatically.
+*/
