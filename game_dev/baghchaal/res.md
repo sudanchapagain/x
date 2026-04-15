@@ -5,4 +5,3 @@
 - <https://github.com/a327ex/BYTEPATH>
   + <https://www.reddit.com/r/gamedev/comments/8c7e3i/>
 - <https://github.com/challacade/legend-of-lua>
-
