@@ -35,6 +35,76 @@ MISC
 - <https://github.com/skyzh/type-exercise-in-rust>
 - <https://github.com/ctjhoa/rust-learning>
 
+- <https://rust-for-linux.com>
+- <https://corrode.dev/blog/tips-for-faster-rust-compile-times>
+- <https://www.sitepoint.com/rust-tutorial-introduction-javascript-devs>
+- <https://www.rustfinity.com/practice/rust/challenges/character-counting-string>
+- <https://github.com/nrc/r4cppp/blob/master/hello-world.md>
+- <https://github.com/Kobzol/rust-course-fei>
+- <https://github.com/jieyouxu/rust-project-structure>
+- <https://www.youtube.com/watch?v=fTXtdbt1PFA>
+- <https://www.youtube.com/watch?v=_x61dSP4ZKM>
+- <https://www.youtube.com/watch?v=7QwqShxyHtc>
+- <https://rust-analyzer.github.io/book/contributing/syntax.html>
+- <https://trainingportal.linuxfoundation.org/learn/course/getting-started-with-rust-lfel1002>
+- <https://learnxinyminutes.com/rust>
+- <https://google.github.io/learn_unsafe_rust>
+- <https://forge.rust-lang.org>
+- <https://www.kdab.com/static-assertions-in-rust>
+- <https://www.youtube.com/watch?v=R0dP-QR5wQo>
+- <https://rust-book.cs.brown.edu/ch02-00-guessing-game-tutorial.html>
+- <https://beej.us/blog/data/rust-trait-impl>
+- <https://beej.us/blog/data/rust-rpn-calc>
+- <https://rustp.org/basic-programs/input-single-number>
+- <https://rust-cli.github.io/book/index.html>
+- Rust Exercises, written by Ferrous Systems: <https://rust-exercises.ferrous-systems.com/latest/book/>
+
+
+    - History of Rust
+    - Variables, Constants
+    - Ownership & Borrowing
+    - The Three Ownership Rules
+    - Primitive datatypes
+    - Strings & Str
+    - Object or Owned Strings
+    - Understanding String Slices
+    - Arrays
+    - Conditionals - if, match
+    - Loops
+    - Tuples
+    - Structs
+    - Enums
+    - Vectors
+    - HashMaps
+    - Creating and Initializing a HashMap
+    - Methods of Accessing Data in HashMaps
+    - HashMap Iteration Order
+    - Functions
+    - Error Handling
+    - Testing in Rust
+    - Unit testing
+    - Doc testing
+    - Integration testing
+    - OOP in Rust
+    - Structs and methods
+    - Composition over Inheritance
+    - Encapsulation
+    - Traits
+    - Generics - static dispatch
+    - Object Traits - dynamic dispatch
+    - Introduction to closures
+    - Iterators
+    - Lifetimes
+    - Box
+    - Rc and Arc
+    - Cell and RefCell
+    - Mutex and RwLock
+    - Concurrency
+    - Threads in Rust
+    - Atomic Operations
+    - Asynchronous Programming in Rust
+
+
 BASIC RUST CONCEPTS
 ===================
 

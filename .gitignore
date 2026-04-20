@@ -10,6 +10,7 @@
 .settings/
 .setting
 algorithms/
+compilers/
 dbms/
 mathematics/
 operating_systems/
@@ -18,12 +19,6 @@ vault/
 bin/
 
 # has books and other materials
-android_dev/learn
-compilers/
-game_dev/WIP
-graphics/notes
-networking/notes
-networking/system design
 programming/c/learning
 programming/misc/lambda_calculus
 programming/misc/lisp
@@ -31,7 +26,6 @@ programming/misc/go/learn
 programming/programming.md
 programming/misc/python/learning
 
-history_of_computing/
 programming/java/books
 university/
 links.md
