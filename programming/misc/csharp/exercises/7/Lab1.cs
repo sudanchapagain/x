@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 delegate void MyDelegate(string message);
 

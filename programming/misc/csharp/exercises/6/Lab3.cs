@@ -1,4 +1,4 @@
-﻿namespace Lab06;
+namespace Lab06;
 
 public class Number(int value)
 {

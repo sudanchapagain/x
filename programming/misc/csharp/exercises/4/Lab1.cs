@@ -1,4 +1,4 @@
-﻿namespace Lab04;
+namespace Lab04;
 
 public class Circle
 {

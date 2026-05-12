@@ -1,4 +1,4 @@
-﻿namespace Lab01;
+namespace Lab01;
 
 public static class Lab5
 {

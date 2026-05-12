@@ -1,4 +1,4 @@
-﻿namespace Lab05;
+namespace Lab05;
 
 public class Animal
 {

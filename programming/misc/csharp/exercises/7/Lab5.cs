@@ -1,4 +1,4 @@
-﻿public static class Lab5
+public static class Lab5
 {
     public static void Run()
     {

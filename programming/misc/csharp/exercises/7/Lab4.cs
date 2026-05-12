@@ -1,4 +1,4 @@
-﻿public static class Lab4
+public static class Lab4
 {
     public delegate void Notify(string message);
 
