@@ -1,0 +1,5 @@
+- <https://blog.kinjal.dev/bring-your-own-load-balancer>
+- <https://codingchallenges.substack.com/p/coding-challenge-5>
+- <https://codingchallenges.fyi/challenges/challenge-load-balancer>
+- <https://github.com/kiner-shah/MySolutionsToCodingChallenges/tree/main/load-balancer>
+- <https://github.com/nupur710/load-balancer>
