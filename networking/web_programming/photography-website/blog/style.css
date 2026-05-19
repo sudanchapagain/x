@@ -1,0 +1,333 @@
+/* <=======================BLOG CSS==============================> */
+.main-container {
+  padding: 10px 20px;
+  width: 100%;
+}
+
+main {
+  height: auto !important;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 100%;
+  margin: 10px;
+  text-align: center;
+}
+
+.main-content {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-post {
+  position: relative;
+  display: none;
+  width: 100%;
+}
+
+.blog-post.active {
+  display: block;
+}
+
+.image-section {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  max-height: 800px;
+}
+
+.image-section img {
+  width: 100%;
+  max-height: 700px;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+
+.text-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 80%;
+}
+
+.text-overlay h2,
+.text-overlay .date,
+.text-overlay .excerpt {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.arrow {
+  pointer-events: all;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+/* -------------------.grid-box CSS---------- */
+.blog-container {
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  margin: 10px;
+  text-align: center;
+}
+
+h3 {
+  margin: 0;
+}
+
+.grid-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 40px;
+}
+
+.grid-box__item {
+  width: calc(50% - 10px);
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grid-box__item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.grid-box img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.grid-box__content {
+  padding: 20px;
+}
+
+.grid-box__title {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+}
+
+.meta-box {
+  margin: 10px 0;
+  color: #777;
+}
+
+.meta-box .meta-box-item {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.text-container p {
+  margin: 0 0 10px;
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: darkred;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid-box__item {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-box__item {
+    width: calc(100% - 20px);
+  }
+}
+
+/* <--------------------------NewsLetter Form CSS------------------------------> */
+.newsletter {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
+.news {
+  background-color: #000000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: auto;
+  height: auto;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news:hover {
+  background-color: #444;
+}
+
+.news svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+.news span {
+  color: #fff;
+  flex-grow: 1;
+}
+
+.news a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+.newsletter-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; /* Reduced width */
+  max-width: 90%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 2; /* Ensure the form is above other content */
+}
+
+img.site-logo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.form-heading {
+  font-size: 1.5rem; /* Reduced font size */
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+}
+
+.newsletter-form.show {
+  display: block;
+}
+.newsletter-form input[type="name"],
+.newsletter-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding and border width are included in the width */
+}
+
+.newsletter-form .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newsletter-form input[type="submit"],
+.newsletter-form .close-btn {
+  width: 48%; /* Adjusted width to fit two buttons in a row with a small gap */
+  padding: 0.5rem; /* Reduced padding using rem units */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-sizing: border-box; /* Ensure padding and border width are included in the width */
+}
+
+.newsletter-form input[type="submit"] {
+  background-color: #4caf50; /* Green color for subscribe */
+  color: white;
+}
+
+.newsletter-form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.newsletter-form .close-btn {
+  background-color: #f44336; /* Red color for close */
+  color: white;
+}
+
+.newsletter-form .close-btn:hover {
+  background-color: #da190b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .newsletter-form {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .form-heading {
+    font-size: 1.3rem; /* Further reduced font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter-form {
+    width: 100%;
+  }
+}

@@ -1,0 +1,9 @@
+BasedOnStyle: GNU
+IndentWidth: 4
+ColumnLimit: 100
+BreakBeforeBraces: Linux
+PointerAlignment: Left
+AlignConsecutiveAssignments: Consecutive
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false

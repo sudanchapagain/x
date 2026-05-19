@@ -1,0 +1,45 @@
+base_url = "https://example.com"
+title = "xxxx"
+description = "xxxx xxxx xxxx"
+
+default_language = "en"
+output_dir = "dist"
+compile_sass = true
+minify_html = false
+build_search_index = false
+generate_feeds = true
+
+feed_filenames = ["rss.xml"]
+taxonomies = [{ name = "categories" }]
+
+[markdown]
+highlight_code = true
+highlight_theme = "css"
+extra_syntaxes_and_themes = ["highlight_themes"]
+highlight_themes_css = [
+  { theme = "serene-light", filename = "hl-light.css" },
+]
+
+render_emoji = false
+external_links_target_blank = false
+external_links_no_follow = true
+external_links_no_referrer = true
+smart_punctuation = false
+
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
+
+[extra]
+sections = [
+  { name = "writings", path = "/writings", is_external = false },
+]
+
+blog_section_path = "/writings"
+back_link_text = "Back"
+force_theme = false
+footer_copyright = "© 2025 <YOUR NAME>"
+footer_credits = true
+not_found_error_text = "404!"
+not_found_recover_text = "The page you're looking for doesn't exist. Return to home."

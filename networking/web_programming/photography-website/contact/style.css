@@ -1,0 +1,53 @@
+.contact {
+  height: auto;
+}
+.contact-form {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: auto;
+  display: block;
+  text-align: center;
+  width: calc(50%-10px);
+}
+form * {
+  font-size: 16px;
+}
+form {
+  margin: 10px 0;
+}
+input,
+select {
+  height: 50px;
+  width: 40%;
+  padding: 10px;
+  margin: 10px 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+}
+textarea {
+  padding: 10px;
+  width: 85%;
+  height: 150px;
+  margin: 10px 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+}
+
+[type*="submit"] {
+  background-color: #000000;
+  color: white;
+  width: 15%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+::placeholder {
+  color: black;
+}
+[type*="submit"]:hover {
+  background-color: rgb(67, 67, 67);
+  transform: translateY(-3px);
+}

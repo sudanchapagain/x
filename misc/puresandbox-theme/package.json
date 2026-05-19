@@ -1,0 +1,41 @@
+{
+  "name": "puresandbox",
+  "displayName": "PureSandbox",
+  "description": "a visual studio code theme.",
+  "publisher": "SudanChapagain",
+  "author": {
+    "name": "Sudan Chapagain"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sudanchapagain/puresandbox-theme"
+  },
+  "galleryBanner": {
+    "color": "#999999",
+    "theme": "dark"
+  },
+  "icon": "assets/icon.png",
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "puresandbox",
+    "Simple",
+    "Clean",
+    "Codesandbox",
+    "theme"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "PureSandbox Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/PureSandbox Theme-color-theme.json"
+      }
+    ]
+  }
+}

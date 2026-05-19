@@ -1,0 +1,76 @@
+/* Homepage */
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-image: url("./assets/img/bag.webp");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+.content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.content button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 55px;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.content button:hover {
+  background-color: #222;
+}
+
+.why {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 65rem;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 1rem;
+  margin-bottom: 5rem;
+}
+
+.services {
+  border-left: solid 1px #ddd;
+  padding-left: 3rem;
+}
+
+@media screen and (max-width: 800px) {
+  .why {
+    display: block;
+    gap: 0;
+  }
+
+  .services {
+    border: none;
+    padding-left: 0;
+  }
+}
